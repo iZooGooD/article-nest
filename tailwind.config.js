@@ -10,6 +10,7 @@ export default {
         'purple-dark': '#232145',
         'purple-light': '#1B1834',
         'purple-faded': '#a5aacf',
+        'pink-dark': '#F41775',
       },
       fontFamily: {
         sans: ['Jost', 'sans-serif'],
