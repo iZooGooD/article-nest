@@ -1,13 +1,12 @@
 import React from "react";
+import NavigationPrimary from "../NavigationPrimary/NavigationPrimary";
+import NavigationSecondary from "../NavigationSecondary/NavigationSecondary";
 
-interface HeaderProps {
-  title: string;
-}
-
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC = () => {
   return (
-    <header className="header">
-      <h1>{title}</h1>
+    <header>
+      <NavigationPrimary />
+      <NavigationSecondary />
     </header>
   );
 };

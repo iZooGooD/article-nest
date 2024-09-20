@@ -7,7 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#232145',
+        'purple-dark': '#232145',
+        'purple-light': '#1B1834',
+        'purple-faded': '#a5aacf',
+      },
+      fontFamily: {
+        sans: ['Jost', 'sans-serif'],
       },
     },
   },
