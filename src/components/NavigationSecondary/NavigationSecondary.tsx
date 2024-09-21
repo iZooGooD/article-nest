@@ -12,7 +12,14 @@ const NavigationSecondary: React.FC = () => {
   };
   return (
     <nav className="flex bg-purple-dark h-20 items-center justify-between md:justify-around px-6">
-      <img src={logo} alt="site logo" className="h-[175px]" />
+      <div className="flex">
+        <img
+          src={logo}
+          alt="site logo"
+          className="h-[175px] outline-none"
+          height={175}
+        />
+      </div>
       <ul className="hidden md:flex">
         <li className="mx-4">
           <Link to="/" className="text-lg text-grey-light hover:text-white">

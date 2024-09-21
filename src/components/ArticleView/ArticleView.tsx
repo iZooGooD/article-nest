@@ -3,7 +3,7 @@ import React from "react";
 const ArticleView: React.FC = () => {
   return (
     <div>
-      <div className="image-wrapper">
+      <div className="image-wrapper relative">
         <img
           src="https://images.prismic.io/turing/652ebb53fbd9a45bcec817f4_shutterstock_1628424196_11zon_406aa47d57.webp?auto=format,compress"
           alt="Tech Article"

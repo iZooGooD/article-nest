@@ -10,7 +10,7 @@ interface MobileNavigationProps {
 const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
   return (
     <div className={`md:hidden  ${isOpen ? "block" : "hidden"}`}>
-      <nav className="md:hidden flex bg-gray-100 dark:bg-white h-[100vh] right-0 absolute top-[112px] w-[60%]">
+      <nav className="md:hidden flex bg-white  h-[100vh] z-10 right-0 absolute top-[120px] w-[60%] shadow-lg">
         <ul className="flex flex-col  w-[100%] mt-4">
           <li className="mx-4 my-2 border-b-2 p-2">
             <Link

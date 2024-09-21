@@ -1,12 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import { useDarkMode } from "../../hooks/useDarkMode";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import DarkModeSwitch from "../DarkModeSwitch/DarkModeSwitch";
 
 const NavigationPrimary: React.FC = () => {
-  const [isDarkMode, toggleDarkMode] = useDarkMode();
   return (
-    <nav className="flex justify-end items-center bg-purple-light h-8">
+    <nav className="flex justify-end items-center bg-purple-light h-10">
       <ul className="flex mx-2">
         <li className="mx-2">
           <a className="text-sm" href="/">
@@ -21,12 +20,7 @@ const NavigationPrimary: React.FC = () => {
           </a>
         </li>
         <li className="mx-2">
-          <button onClick={toggleDarkMode} className="flex items-center">
-            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
-            <span className="ml-2">
-              {isDarkMode ? "Light Mode" : "Dark Mode"}
-            </span>
-          </button>
+          <DarkModeSwitch />
         </li>
       </ul>
     </nav>

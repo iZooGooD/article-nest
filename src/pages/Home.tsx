@@ -6,7 +6,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className=" dark:bg-grey-dark bg-neutral-light flex flex-col">
+      <div className="dark:bg-grey-dark bg-neutral-light flex flex-col">
         <TrendingArticles />
       </div>
     </div>
