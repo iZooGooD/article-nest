@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <footer className="footer bg-purple-dark">
       <div className="text-white py-6">
         <div className="container mx-auto px-4">
-          <div className="flex items-center border-t border-grey-light justify-between">
+          <div className="flex flex-wrap items-center border-t border-grey-light justify-between">
             <div className="flex items-center">
               <img
                 src={logo}

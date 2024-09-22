@@ -23,7 +23,7 @@ function Home() {
         <LatestArticles articles={articles} />
         <div className="my-8 flex">
           <button className="mx-auto bg-brand text-white py-2 px-4 rounded-md">
-            EXPLORE MORE
+            Explore more
           </button>
         </div>
         <Footer />

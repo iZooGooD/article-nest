@@ -10,8 +10,8 @@ const ArticleWideView: React.FC<ArticleProps> = ({
   publishedAt,
 }) => {
   return (
-    <div className="flex rounded-md  dark:bg-black-faded bg-white shadow-sm">
-      <div className="h-[100%] md:h-[180px] md:w-[380px] image-wrapper">
+    <div className="md:flex-row flex flex-row-reverse rounded-md  dark:bg-black-faded bg-white shadow-sm">
+      <div className="h-[100%] md:h-[180px] md:w-[380px] image-wrapper flex items-center">
         <img
           src={postImage}
           alt="Tech Article"
