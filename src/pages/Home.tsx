@@ -8,10 +8,13 @@ import Footer from "../components/Footer/Footer";
 
 function Home() {
   const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [isTrendingArticlesLoading, setIsTrendingArticlesLoading] =
+    useState<boolean>(true);
   useEffect(() => {
     const fetchTrendingArticles = async () => {
       const trendingArticles = await API.getTrendingArticles();
       setArticles(trendingArticles);
+      setIsTrendingArticlesLoading(false);
     };
     fetchTrendingArticles();
   }, []);
@@ -19,7 +22,10 @@ function Home() {
     <div>
       <Header />
       <div className="dark:bg-grey-dark bg-neutral-light flex flex-col">
-        <TrendingArticles articles={articles} />
+        <TrendingArticles
+          articles={articles}
+          isLoading={isTrendingArticlesLoading}
+        />
         <LatestArticles articles={articles} />
         <div className="my-8 flex">
           <button className="mx-auto bg-brand text-white py-2 px-4 rounded-md">

@@ -1,0 +1,39 @@
+import React from "react";
+
+const ArticleViewSkeleton: React.FC = () => {
+  return (
+    <div className="flex flex-col rounded-sm dark:bg-slate-800">
+      {/* Skeleton for the image */}
+      <div className="flex h-[100%]>">
+        <div className="image-wrapper h-[220px] w-[100%] bg-gray-200 dark:bg-slate-700 animate-pulse rounded-sm"></div>
+      </div>
+
+      {/* Skeleton for the article content */}
+      <div className="flex flex-col dark:bg-black-faded bg-white shadow-sm py-2 px-4 h-[100%]">
+        <div>
+          {/* Skeleton for the title */}
+          <div className="h-6 bg-gray-200 dark:bg-slate-700 rounded-full w-full mb-4 mt-1 animate-pulse"></div>
+
+          {/* Skeleton for the description */}
+          <div className="space-y-2 mb-4 h-[80px]">
+            <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full w-full animate-pulse"></div>
+            <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full w-full animate-pulse"></div>
+            <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full w-full animate-pulse"></div>
+            <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full w-2/3 animate-pulse"></div>
+          </div>
+
+          {/* Skeleton for the tags */}
+          <div className="h-2 bg-gray-200 dark:bg-slate-700 rounded-full w-1/2 animate-pulse"></div>
+        </div>
+
+        {/* Skeleton for the author section */}
+        <div className="flex items-center my-2">
+          <div className="w-8 h-8 bg-gray-200 dark:bg-slate-700 rounded-full animate-pulse mr-2"></div>
+          <div className="h-4 bg-gray-200 dark:bg-slate-700 rounded-full w-1/2 animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ArticleViewSkeleton;

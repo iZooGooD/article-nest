@@ -36,7 +36,7 @@ const ArticleView: React.FC<ArticleProps> = ({
             alt="Author"
             className="w-8 h-8 rounded-full mr-2"
           />
-          <span className="dark:text-neutral-200 text-neutral-600 text-sm md:text-base">
+          <span className="dark:text-neutral-200 text-neutral-600 text-sm">
             {author.name} on {publishedAt}
           </span>
         </div>
