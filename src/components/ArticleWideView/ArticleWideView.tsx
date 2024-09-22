@@ -1,7 +1,7 @@
 import React from "react";
 import { ArticleType as ArticleProps } from "../../utils/types/article";
 
-const ArticleView: React.FC<ArticleProps> = ({
+const ArticleWideView: React.FC<ArticleProps> = ({
   title,
   description,
   tags,
@@ -10,15 +10,15 @@ const ArticleView: React.FC<ArticleProps> = ({
   publishedAt,
 }) => {
   return (
-    <div className="flex flex-col rounded-md">
-      <div className="image-wrapper relative">
+    <div className="flex rounded-md  dark:bg-black-faded bg-white shadow-sm">
+      <div className="h-[100%] md:h-[180px] md:w-[380px] image-wrapper">
         <img
           src={postImage}
           alt="Tech Article"
-          className="h-[220px] w-[100%]"
+          className="h-[100px] w-[220px]  md:h-[180px] md:w-[380px]"
         />
       </div>
-      <div className="flex flex-col justify-between dark:bg-black-faded bg-white shadow-sm py-2 px-4 h-[100%]">
+      <div className="flex flex-col justify-between py-2 px-4 h-[100%] w-full">
         <div>
           <h4 className="md:text-xl text-brand font-medium">{title}</h4>
           <p className="text-sm text-gray-400 my-2">{description}</p>
@@ -41,4 +41,4 @@ const ArticleView: React.FC<ArticleProps> = ({
   );
 };
 
-export default ArticleView;
+export default ArticleWideView;
