@@ -10,18 +10,22 @@ const ArticleView: React.FC<ArticleProps> = ({
   publishedAt,
 }) => {
   return (
-    <div className="flex flex-col rounded-md">
+    <div className="flex flex-col rounded-sm">
       <div className="image-wrapper relative">
         <img
           src={postImage}
           alt="Tech Article"
-          className="h-[220px] w-[100%]"
+          className="h-[220px] w-[100%] rounded-sm"
         />
       </div>
       <div className="flex flex-col justify-between dark:bg-black-faded bg-white shadow-sm py-2 px-4 h-[100%]">
         <div>
-          <h4 className="md:text-xl text-brand font-medium">{title}</h4>
-          <p className="text-sm text-gray-400 my-2">{description}</p>
+          <h4 className="md:text-xl text-brand font-medium line-clamp-1">
+            {title}
+          </h4>
+          <p className="text-sm text-gray-400 my-2 line-clamp-4 h-[80px]">
+            {description}
+          </p>
           <span className="text-gray-400 dark:text-neutral-500 font-medium text-sm">
             Tags: {tags.join(", ")}
           </span>

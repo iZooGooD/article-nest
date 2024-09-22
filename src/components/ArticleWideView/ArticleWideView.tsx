@@ -15,13 +15,17 @@ const ArticleWideView: React.FC<ArticleProps> = ({
         <img
           src={postImage}
           alt="Tech Article"
-          className="h-[100px] w-[220px]  md:h-[180px] md:w-[380px]"
+          className="h-[100px] w-[220px]  md:h-[180px] md:w-[380px] rounded-sm"
         />
       </div>
       <div className="flex flex-col justify-between py-2 px-4 h-[100%] w-full">
         <div>
-          <h4 className="md:text-xl text-brand font-medium">{title}</h4>
-          <p className="text-sm text-gray-400 my-2">{description}</p>
+          <h4 className="md:text-xl text-brand font-medium line-clamp-2">
+            {title}
+          </h4>
+          <p className="text-sm text-gray-400 my-2 line-clamp-4">
+            {description}
+          </p>
           <span className="text-gray-400 dark:text-neutral-500 font-medium text-sm">
             Tags: {tags.join(", ")}
           </span>
