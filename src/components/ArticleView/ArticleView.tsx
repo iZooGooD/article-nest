@@ -1,35 +1,40 @@
 import React from "react";
+import { ArticleType as ArticleProps } from "../../utils/types/article";
 
-const ArticleView: React.FC = () => {
+const ArticleView: React.FC<ArticleProps> = ({
+  title,
+  description,
+  tags,
+  postImage,
+  author,
+  publishedAt,
+}) => {
   return (
-    <div>
+    <div className="flex flex-col rounded-md">
       <div className="image-wrapper relative">
         <img
-          src="https://images.prismic.io/turing/652ebb53fbd9a45bcec817f4_shutterstock_1628424196_11zon_406aa47d57.webp?auto=format,compress"
+          src={postImage}
           alt="Tech Article"
+          className="h-[220px] w-[100%]"
         />
       </div>
-      <div className="dark:bg-black-faded bg-white shadow-sm rounded-md py-8 px-4">
+      <div className="flex flex-col justify-between dark:bg-black-faded bg-white shadow-sm py-2 px-4 h-[100%]">
         <div>
-          <h4 className="md:text-xl text-brand font-medium">
-            Learn the AI vs ML in minutes
-          </h4>
-          <p className="text-sm text-gray-400 my-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
-            quibusdam accusantium nihil, dicta numquam nostrum ut adipisci
-            repudiandae sed officia facere at nam quo ipsum labore incidunt
-            eaque. Voluptatibus, alias!
-          </p>
+          <h4 className="md:text-xl text-brand font-medium">{title}</h4>
+          <p className="text-sm text-gray-400 my-2">{description}</p>
+          <span className="text-gray-400 dark:text-neutral-500 font-medium text-sm">
+            Tags: AI, Cloud
+          </span>
         </div>
-        <div className="article-footer my-2">
-          <div>
-            <span>Author</span>
-            <span>date</span>
-          </div>
-          <div>
-            <span>Read time</span>
-            <span>likes</span>
-          </div>
+        <div className="flex items-center my-2">
+          <img
+            src={author.profileUrl}
+            alt="Author"
+            className="w-8 h-8 rounded-full mr-2"
+          />
+          <span className="dark:text-neutral-200 text-neutral-600">
+            {author.name} on {publishedAt}
+          </span>
         </div>
       </div>
     </div>
