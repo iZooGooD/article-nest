@@ -1,4 +1,4 @@
-import { ArticleType } from "../utils/types/article";
+import { ArticleType } from "src/utils/types/article";
 
 export class API {
   static namespace: string = "api";

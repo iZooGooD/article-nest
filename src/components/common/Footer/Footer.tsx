@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "src/assets/article-nest-logo.png";
+import LinkText from "src/components/common/LinkText/LinkText";
 
 const Footer: React.FC = () => {
   return (
@@ -17,12 +18,10 @@ const Footer: React.FC = () => {
                 Copyright 2024 Article Nest. All rights reserved
               </p>
             </div>
-            <div>
-              <ul className="flex">
-                <li className="text-sm mx-2 text-grey-light">About Us</li>
-                <li className="text-sm mx-2 text-grey-light">Contact Us</li>
-                <li className="text-sm mx-2 text-grey-light">Privacy Policy</li>
-              </ul>
+            <div className="flex">
+              <LinkText to="/about-us" text="About Us" />
+              <LinkText to="/contact-us" text="Contact Us" />
+              <LinkText to="/privacy-policy" text="Privacy Policy" />
             </div>
           </div>
         </div>

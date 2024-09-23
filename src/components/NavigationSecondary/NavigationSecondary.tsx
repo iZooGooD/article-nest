@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import logo from "src/assets/article-nest-logo.png";
-import { Link } from "react-router-dom";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MobileNavigation from "../MobileNavigation/MobileNavigation";
+import MobileNavigation from "src/components/MobileNavigation/MobileNavigation";
+import LinkText from "src/components/common/LinkText/LinkText";
 
 const NavigationSecondary: React.FC = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
@@ -21,31 +21,11 @@ const NavigationSecondary: React.FC = () => {
         />
       </div>
       <ul className="hidden md:flex">
-        <li className="mx-4">
-          <Link to="/" className="text-lg text-grey-light hover:text-white">
-            Home
-          </Link>
-        </li>
-        <li className="mx-4">
-          <Link className="text-lg text-grey-light hover:text-white" to="/">
-            Software Dev
-          </Link>
-        </li>
-        <li className="mx-4">
-          <Link className="text-lg text-grey-light hover:text-white" to="/">
-            Cloud
-          </Link>
-        </li>
-        <li className="mx-4">
-          <Link className="text-lg text-grey-light hover:text-white" to="/">
-            AI
-          </Link>
-        </li>
-        <li className="mx-4">
-          <Link className="text-lg text-grey-light hover:text-white" to="/">
-            Security
-          </Link>
-        </li>
+        <LinkText to="/" text="Home" />
+        <LinkText to="/" text="Software Dev" />
+        <LinkText to="/" text="Cloud" />
+        <LinkText to="/" text="AI" />
+        <LinkText to="/" text="Security" />
       </ul>
       <div className="flex">
         <FontAwesomeIcon
