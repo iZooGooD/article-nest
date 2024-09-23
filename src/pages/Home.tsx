@@ -7,10 +7,29 @@ import LatestArticles from "src/components/LatestArticles/LatestArticles";
 import Footer from "src/components/common/Footer/Footer";
 
 function Home() {
+  // SignInMenu states and handlers
   const [isSignInMenuOpen, setIsSignInMenuOpen] = useState<boolean>(false);
   const handleSignInMenuToggle = () => {
     setIsSignInMenuOpen(!isSignInMenuOpen);
   };
+
+  // SearchMenu states and handlers
+  const [searchMenuInputText, setSearchMenuInputText] = useState<string>("");
+  const [isSearchMenuVisible, setIsSearchMenuVisible] =
+    useState<boolean>(false);
+  const handleSearchMenuToggle = () => {
+    setIsSearchMenuVisible(!isSearchMenuVisible);
+  };
+  const handleSearchMenuInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchMenuInputText(event.target.value);
+  };
+  const onSearchButtonClick = () => {
+    // TODO: Implement search functionality
+  };
+
+  const shouldBlueBackground = isSignInMenuOpen || isSearchMenuVisible;
 
   const [articles, setArticles] = useState<ArticleType[]>([]);
   const [isTrendingArticlesLoading, setIsTrendingArticlesLoading] =
@@ -30,10 +49,15 @@ function Home() {
       <Header
         isSignInMenuOpen={isSignInMenuOpen}
         handleSignInMenuToggle={handleSignInMenuToggle}
+        isSearchMenuVisible={isSearchMenuVisible}
+        handleSearchMenuToggle={handleSearchMenuToggle}
+        handleSearchMenuInputChange={handleSearchMenuInputChange}
+        searchMenuInputText={searchMenuInputText}
+        onSearchButtonClick={onSearchButtonClick}
       />
       <div
         className={`dark:bg-grey-dark bg-neutral-light flex flex-col ${
-          isSignInMenuOpen && "blur-sm"
+          shouldBlueBackground && "blur-sm"
         }`}
       >
         <TrendingArticles
