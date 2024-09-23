@@ -1,5 +1,5 @@
 import React from "react";
-import { ArticleType as ArticleProps } from "../../utils/types/article";
+import { ArticleType as ArticleProps } from "src/utils/types/article";
 
 const ArticleView: React.FC<ArticleProps> = ({
   title,
@@ -15,7 +15,7 @@ const ArticleView: React.FC<ArticleProps> = ({
         <img
           src={postImage}
           alt="Tech Article"
-          className="h-[220px] w-[100%] rounded-sm"
+          className="h-[220px] sm:h-[360px] md:h-[220px] w-[100%] rounded-sm"
         />
       </div>
       <div className="flex flex-col justify-between dark:bg-black-faded bg-white shadow-sm py-2 px-4 h-[100%]">

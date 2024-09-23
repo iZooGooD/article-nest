@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../assets/article-nest-logo.png";
+import logo from "src/assets/article-nest-logo.png";
 import { Link } from "react-router-dom";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,6 +1,6 @@
 import React from "react";
 import ArticleView from "../ArticleView/ArticleView";
-import { ArticleType } from "../../utils/types/article";
+import { ArticleType } from "src/utils/types/article";
 import ArticleViewSkeleton from "../ArticleViewSkeleton/ArticleViewSkeleton";
 
 interface TrendingArticlesProps {
@@ -21,7 +21,7 @@ const TrendingArticles: React.FC<TrendingArticlesProps> = ({
         <div className="flex flex-col border-t-2 flex-1 ml-3 border-green-700"></div>
         <div className="flex flex-col border-t-2 flex-1  border-gray-500"></div>
       </div>
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
         {isLoading
           ? Array.from({ length: 6 }).map((_, index) => (
               <ArticleViewSkeleton key={index} />
