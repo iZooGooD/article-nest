@@ -19,6 +19,7 @@ interface NavigationPrimaryProps {
   ) => void;
   searchMenuInputText: string;
   onSearchButtonClick: () => void;
+  searchInputErrors: string[];
 }
 
 const NavigationPrimary: React.FC<NavigationPrimaryProps> = ({
@@ -29,6 +30,7 @@ const NavigationPrimary: React.FC<NavigationPrimaryProps> = ({
   handleSearchMenuInputChange,
   searchMenuInputText,
   onSearchButtonClick,
+  searchInputErrors,
 }) => {
   return (
     <nav className="flex justify-end items-center bg-purple-light h-10 relative">
@@ -66,6 +68,7 @@ const NavigationPrimary: React.FC<NavigationPrimaryProps> = ({
         handleSearchMenuInputChange={handleSearchMenuInputChange}
         searchMenuInputText={searchMenuInputText}
         onSearchButtonClick={onSearchButtonClick}
+        searchInputErrors={searchInputErrors}
       />
     </nav>
   );

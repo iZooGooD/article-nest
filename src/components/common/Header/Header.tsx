@@ -1,6 +1,6 @@
 import React from "react";
-import NavigationPrimary from "../../NavigationPrimary/NavigationPrimary";
-import NavigationSecondary from "../../NavigationSecondary/NavigationSecondary";
+import NavigationPrimary from "src/components/NavigationPrimary/NavigationPrimary";
+import NavigationSecondary from "src/components/NavigationSecondary/NavigationSecondary";
 
 interface HeaderProps {
   isSignInMenuOpen: boolean;
@@ -12,6 +12,7 @@ interface HeaderProps {
   ) => void;
   searchMenuInputText: string;
   onSearchButtonClick: () => void;
+  searchInputErrors: string[];
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -22,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({
   handleSearchMenuInputChange,
   searchMenuInputText,
   onSearchButtonClick,
+  searchInputErrors,
 }) => {
   return (
     <header>
@@ -33,6 +35,7 @@ const Header: React.FC<HeaderProps> = ({
         handleSearchMenuInputChange={handleSearchMenuInputChange}
         searchMenuInputText={searchMenuInputText}
         onSearchButtonClick={onSearchButtonClick}
+        searchInputErrors={searchInputErrors}
       />
       <NavigationSecondary />
     </header>

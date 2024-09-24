@@ -5,6 +5,8 @@ import { ArticleType } from "src/utils/types/article";
 import { API } from "src/services/api";
 import LatestArticles from "src/components/LatestArticles/LatestArticles";
 import Footer from "src/components/common/Footer/Footer";
+import { searchSchema } from "src/utils/validations/search";
+import { z } from "zod";
 
 function Home() {
   // SignInMenu states and handlers
@@ -18,6 +20,10 @@ function Home() {
   const [isSearchMenuVisible, setIsSearchMenuVisible] =
     useState<boolean>(false);
   const handleSearchMenuToggle = () => {
+    if (isSearchMenuVisible) {
+      setSearchMenuInputText("");
+      setSearchInputErrors([]);
+    }
     setIsSearchMenuVisible(!isSearchMenuVisible);
   };
   const handleSearchMenuInputChange = (
@@ -25,23 +31,42 @@ function Home() {
   ) => {
     setSearchMenuInputText(event.target.value);
   };
+  const [searchInputErrors, setSearchInputErrors] = useState<string[]>([]);
   const onSearchButtonClick = () => {
     // TODO: Implement search functionality
+    try {
+      searchSchema.parse(searchMenuInputText);
+      setSearchInputErrors([]);
+      setSearchMenuInputText("");
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        setSearchInputErrors(e.errors.map((error) => error.message));
+      }
+    }
   };
 
   const shouldBlueBackground = isSignInMenuOpen || isSearchMenuVisible;
 
-  const [articles, setArticles] = useState<ArticleType[]>([]);
+  const [trendingArticles, setTrendingArticles] = useState<ArticleType[]>([]);
+  const [latestArticles, setLatestArticles] = useState<ArticleType[]>([]);
   const [isTrendingArticlesLoading, setIsTrendingArticlesLoading] =
+    useState<boolean>(true);
+  const [isLatestArticlesLoading, setIsLatestArticlesLoading] =
     useState<boolean>(true);
 
   useEffect(() => {
     const fetchTrendingArticles = async () => {
-      const trendingArticles = await API.getTrendingArticles();
-      setArticles(trendingArticles);
+      const articles = await API.getTrendingArticles();
+      setTrendingArticles(articles);
       setIsTrendingArticlesLoading(false);
     };
+    const fetchLatestArticles = async () => {
+      const articles = await API.getLatestArticles();
+      setLatestArticles(articles);
+      setIsLatestArticlesLoading(false);
+    };
     fetchTrendingArticles();
+    fetchLatestArticles();
   }, []);
 
   return (
@@ -54,6 +79,7 @@ function Home() {
         handleSearchMenuInputChange={handleSearchMenuInputChange}
         searchMenuInputText={searchMenuInputText}
         onSearchButtonClick={onSearchButtonClick}
+        searchInputErrors={searchInputErrors}
       />
       <div
         className={`dark:bg-grey-dark bg-neutral-light flex flex-col ${
@@ -61,12 +87,12 @@ function Home() {
         }`}
       >
         <TrendingArticles
-          articles={articles}
+          articles={trendingArticles}
           isLoading={isTrendingArticlesLoading}
         />
         <LatestArticles
-          articles={articles}
-          isLoading={isTrendingArticlesLoading}
+          articles={latestArticles}
+          isLoading={isLatestArticlesLoading}
         />
         <div className="my-8 flex">
           <button className="mx-auto bg-brand text-white py-2 px-4 rounded-md">

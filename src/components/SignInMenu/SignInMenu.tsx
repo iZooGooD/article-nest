@@ -7,7 +7,7 @@ interface SignInMenuProps {
 const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
   return (
     <div
-      className={`w-full shadow-md z-20 sign-in-menu flex gap-4 p-3 md:p-6 flex-wrap bg-neutral-light text-grey-dark absolute top-10 right-0 md:w-[580px] rounded-b-md transition-opacity duration-300 ${
+      className={`w-full rounded-md shadow-md z-20 sign-in-menu flex gap-4 p-3 md:p-6 flex-wrap bg-neutral-light text-grey-dark absolute top-10 right-0 md:w-[580px] rounded-b-md transition-opacity duration-300 ${
         isSignInMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
