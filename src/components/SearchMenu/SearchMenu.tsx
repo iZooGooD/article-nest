@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { KEY_CODES } from "src/utils/constants";
 
 interface SearchMenuProps {
   isSearchMenuVisible: boolean;
@@ -21,6 +22,12 @@ const SearchMenu: React.FC<SearchMenuProps> = ({
   onSearchButtonClick,
   searchInputErrors,
 }) => {
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === KEY_CODES.ENTER) {
+      onSearchButtonClick();
+    }
+  };
+
   return (
     <div
       className={`flex flex-col mx-auto justify-center absolute top-0 z-20 h-[180px] md:h-[120px] w-full bg-white dark:bg-black-faded shadow-lg ${
@@ -33,6 +40,7 @@ const SearchMenu: React.FC<SearchMenuProps> = ({
           placeholder="Search for articles"
           value={searchMenuInputText}
           onChange={handleSearchMenuInputChange}
+          onKeyUp={onKeyUp}
           className="md:w-[70%] h-[50px] bg-neutral-light dark:bg-gray-200 text-neutral-600  px-4 border border-blue-500 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
