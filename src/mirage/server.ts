@@ -2,6 +2,8 @@ import { createServer } from "miragejs";
 import {
   TRENDING_ARTICLES_RESPONSE,
   LATEST_ARTICLES_RESPONSE,
+  ARTICLE_DETAILS_RESPONSE,
+  PROFILE_RESPONSE,
 } from "./constants";
 
 export default function () {
@@ -20,6 +22,22 @@ export default function () {
           setTimeout(() => {
             resolve(LATEST_ARTICLES_RESPONSE);
           }, 2000);
+        });
+      });
+
+      this.get("/api/article/:id", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(ARTICLE_DETAILS_RESPONSE);
+          }, 3000);
+        });
+      });
+
+      this.get("/api/profile/:id", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(PROFILE_RESPONSE);
+          }, 1000);
         });
       });
     },

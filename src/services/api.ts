@@ -1,7 +1,8 @@
-import { ArticleType } from "src/utils/types/article";
+import { ArticleType, ArticleDetailsType } from "src/utils/types/article";
+import { ProfileType } from "src/utils/types/profile";
 
 export class API {
-  static namespace: string = "api";
+  static namespace: string = "/api";
 
   static async getTrendingArticles(): Promise<ArticleType[]> {
     try {
@@ -22,6 +23,28 @@ export class API {
     } catch (error) {
       console.error("Error fetching latest articles: ", error.message);
       return [];
+    }
+  }
+
+  static async getArticleDetails(id: string): Promise<ArticleDetailsType> {
+    try {
+      const response = await fetch(`${this.namespace}/article/${id}`);
+      const data = await response.json();
+      return data.articleDetails;
+    } catch (error) {
+      console.error("Error fetching article details: ", error.message);
+      return {} as ArticleDetailsType;
+    }
+  }
+
+  static async getProfileDetails(id: string): Promise<ProfileType> {
+    try {
+      const response = await fetch(`${this.namespace}/profile/${id}`);
+      const data = await response.json();
+      return data.profile;
+    } catch (error) {
+      console.error("Error fetching profile: ", error.message);
+      return {} as ProfileType;
     }
   }
 }

@@ -9,9 +9,41 @@ export interface ArticleType {
   description: string;
   tags: string[];
   postImage: string;
+  author: ArticleAuthorType;
+  publishedAt: string;
+}
+
+export interface ArticleAuthorType {
+  username: string;
+  name: string;
+  profileUrl: string;
+}
+
+export interface SectionType {
+  title: string;
+  content: string;
+  image?: {
+    url: string;
+    alt: string;
+  };
+}
+
+export interface ArticleDetailsType {
+  id: string;
+  title: string;
+  description: {
+    sections: Array<SectionType>;
+  };
+  metadata: {
+    likes: number;
+    comments: number;
+    shares: number;
+  };
+  tags: string[];
+  postImage: string;
+  publishedAt: string;
   author: {
     name: string;
     profileUrl: string;
   };
-  publishedAt: string;
 }
