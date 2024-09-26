@@ -4,11 +4,16 @@ import Home from "./pages/Home.tsx";
 import "./index.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import makeServer from "./mirage/server";
+import ArticleReading from "./pages/ArticleReading.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: ":username/articles/:slug",
+    element: <ArticleReading />,
   },
 ]);
 
