@@ -221,6 +221,11 @@ export const ARTICLE_DETAILS_RESPONSE = {
             "There are several types of cybersecurity threats that organizations need to be aware of. These include malware, ransom ware, phishing, denial-of-service attacks",
         },
         {
+          title: "Best Practices for Cybersecurity",
+          content:
+            "To protect against cyber threats, organizations should implement a multi-layered security approach that includes firewalls, antivirus software, intrusion detection systems, and data encryption. Regular security audits and employee training are also essential to ensure that security measures are up-to-date and effective.\n\nOrganizations should also have an incident response plan in place to quickly respond to security breaches and minimize the impact on their operations.\n\nBy following these best practices, organizations can reduce the risk of a cyberattack and protect their data and systems from harm.\n\n \n",
+        },
+        {
           title: "Conclusion",
           content:
             "In conclusion, cybersecurity is a critical aspect of modern technology and business operations. Organizations need to be proactive in implementing security measures to protect their data and systems from cyberattacks. By understanding the types of threats that exist and taking appropriate action, organizations can minimize the risk of a security breach and safeguard their digital assets.",
@@ -242,6 +247,7 @@ export const ARTICLE_DETAILS_RESPONSE = {
       profileUrl:
         "https://media.licdn.com/dms/image/C4E03AQELPNul1cg6Ag/profile-displayphoto-shrink_200_200/0/1618245713463?e=2147483647&v=beta&t=-9wL5ikCuB_jPlIofe_5cS8wEuiG_QYYy8bp3C4VgsM",
     },
+    readTime: 8,
   },
 };
 

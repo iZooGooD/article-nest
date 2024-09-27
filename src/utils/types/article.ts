@@ -42,6 +42,7 @@ export interface ArticleDetailsType {
   tags: string[];
   postImage: string;
   publishedAt: string;
+  readTime: number;
   author: {
     name: string;
     profileUrl: string;

@@ -29,15 +29,15 @@ export default function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(ARTICLE_DETAILS_RESPONSE);
-          }, 3000);
+          }, 0);
         });
       });
 
-      this.get("/api/profile/:id", () => {
+      this.get("/api/profile/:username", () => {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(PROFILE_RESPONSE);
-          }, 1000);
+          }, 0);
         });
       });
     },

@@ -30,16 +30,18 @@ export class API {
     try {
       const response = await fetch(`${this.namespace}/article/${id}`);
       const data = await response.json();
-      return data.articleDetails;
+      return data.article;
     } catch (error) {
       console.error("Error fetching article details: ", error.message);
       return {} as ArticleDetailsType;
     }
   }
 
-  static async getProfileDetails(id: string): Promise<ProfileType> {
+  static async getProfileDetailsUsingUsername(
+    username: string
+  ): Promise<ProfileType> {
     try {
-      const response = await fetch(`${this.namespace}/profile/${id}`);
+      const response = await fetch(`${this.namespace}/profile/${username}`);
       const data = await response.json();
       return data.profile;
     } catch (error) {
