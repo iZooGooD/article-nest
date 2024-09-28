@@ -10,6 +10,7 @@ Welcome to **ArticleNest**, a new project aimed at creating a seamless platform 
 - **Likes and Reactions**: Show your appreciation for the articles you enjoy.
 - **Follow and Followers System**: Build connections by following your favorite writers.
 - **Bookmark Articles**: Save your favorite reads to revisit later.
+- **Dark mode and light mode theme**
 - **And much more...**
 
 ## 🛠️ Tech Stack
