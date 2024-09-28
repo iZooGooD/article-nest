@@ -45,9 +45,9 @@ const CommentList: React.FC<CommentListProps> = ({
   );
 
   const renderLoadMoreButton = () => (
-    <div className="comments-load-more my-4 w-full flex justify-end">
+    <div className="comments-load-more my-4 w-full flex md:justify-end">
       <button
-        className="bg-neutral-600 p-2"
+        className="bg-neutral-600 p-2 w-full md:w-auto"
         onClick={() => fetchComments(articleId)}
       >
         Load more comments
@@ -71,7 +71,7 @@ const CommentList: React.FC<CommentListProps> = ({
 
         {comments.length > 0 && renderLoadMoreButton()}
 
-        <div className="comment-input-card my-6 w-full flex flex-col items-end pl-16">
+        <div className="comment-input-card my-6 w-full flex flex-col md:items-end md:pl-16">
           <textarea
             placeholder="Add a comment..."
             className="px-4 py-2 my-4 w-full shadow-sm dark:bg-black-faded text-neutral-600 dark:text-white"

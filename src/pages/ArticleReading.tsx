@@ -66,7 +66,7 @@ const ArticleReading: React.FC = () => {
           {article?.description?.sections && (
             <ArticleContent sections={article?.description.sections} />
           )}
-          <div className="article-footer mt-8 flex flex-col items-center px-4">
+          <div className="article-footer mt-8 flex flex-col items-center px-2 md:px-4">
             <ArticleMetadata
               likes={article?.metadata.likes || 0}
               comments={article?.metadata.comments || 0}
