@@ -36,6 +36,8 @@ const ArticleReading: React.FC = () => {
 
   const isArticleAuthorInfoLoaded = authorProfile && !isAuthorProfileLoading;
 
+  const isArticleCommentsLoaded = articleComments && !isArticleCommentsLoading;
+
   useEffect(() => {
     const fetchArticle = async (slug: string) => {
       const articleDetails = await API.getArticleDetails(slug);
@@ -74,7 +76,7 @@ const ArticleReading: React.FC = () => {
             <ArticleContentSkeleton />
           )}
 
-          {isArticleContentLoaded ? (
+          {isArticleContentLoaded && isArticleCommentsLoaded ? (
             <div className="article-footer mt-4 flex flex-col items-center px-2 md:px-4">
               <ArticleMetadata
                 likes={article.metadata.likes}
