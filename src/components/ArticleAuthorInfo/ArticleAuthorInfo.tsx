@@ -4,7 +4,6 @@ import { ProfileType as ArticleAuthorInfoProps } from "src/utils/types/profile";
 const ArticleAuthorInfo: React.FC<ArticleAuthorInfoProps> = ({
   name,
   profileUrl,
-  socialLinks,
   bio,
   metaData,
 }) => {

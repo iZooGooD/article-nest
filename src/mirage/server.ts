@@ -38,7 +38,7 @@ export default function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(PROFILE_RESPONSE);
-          }, 0);
+          }, 2500);
         });
       });
 
@@ -46,7 +46,7 @@ export default function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(COMMENTS_RESPONSE);
-          }, 0);
+          }, 2000);
         });
       });
     },

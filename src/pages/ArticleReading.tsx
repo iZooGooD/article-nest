@@ -53,13 +53,17 @@ const ArticleReading: React.FC = () => {
 
     if (slug) {
       fetchArticle(slug);
-      fetchComments(Number(slug));
     }
     if (username) {
       fetchAuthorProfileDetails(username);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, username]);
+
+  useEffect(() => {
+    if (article) {
+      fetchComments(article.id);
+    }
+  }, [article]);
 
   return (
     <Layout>
