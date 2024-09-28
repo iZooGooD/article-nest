@@ -4,6 +4,7 @@ import {
   LATEST_ARTICLES_RESPONSE,
   ARTICLE_DETAILS_RESPONSE,
   PROFILE_RESPONSE,
+  COMMENTS_RESPONSE,
 } from "./constants";
 
 export default function () {
@@ -37,6 +38,14 @@ export default function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(PROFILE_RESPONSE);
+          }, 0);
+        });
+      });
+
+      this.get("/api/article/:articleId/comments", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(COMMENTS_RESPONSE);
           }, 0);
         });
       });

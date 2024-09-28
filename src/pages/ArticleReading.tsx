@@ -5,6 +5,11 @@ import Layout from "src/components/Layout/Layout";
 import { API } from "src/services/api";
 import { ArticleDetailsType } from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";
+import CommentList from "src/components/CommentList/CommentList";
+import { CommentType } from "src/utils/types/comment";
+import ArticleMetadata from "src/components/ArticleMetadata/ArticleMetadata";
+import ArticleContent from "src/components/ArticleContent/ArticleContent";
+import ArticleAuthorInfo from "src/components/ArticleAuthorInfo/ArticleAuthorInfo";
 
 const ArticleReading: React.FC = () => {
   const { username, slug } = useParams();
@@ -13,6 +18,16 @@ const ArticleReading: React.FC = () => {
   const [authorProfile, setAuthorProfile] = useState<ProfileType>();
   const [isAuthorProfileLoading, setIsAuthorProfileLoading] =
     useState<boolean>(true);
+  const [articleComments, setArticleComments] = useState<CommentType[]>([]);
+  const [isArticleCommentsLoading, setIsArticleCommentsLoading] =
+    useState<boolean>(true);
+
+  const fetchComments = async (articleId: number) => {
+    // TODO: Add pagination support using start and limit query params
+    const comments = await API.getCommentsForArticle(articleId);
+    setArticleComments([...articleComments, ...comments]);
+    setIsArticleCommentsLoading(false);
+  };
 
   useEffect(() => {
     const fetchArticle = async (slug: string) => {
@@ -29,6 +44,7 @@ const ArticleReading: React.FC = () => {
 
     if (slug) {
       fetchArticle(slug);
+      fetchComments(slug);
     }
     if (username) {
       fetchAuthorProfileDetails(username);
@@ -37,8 +53,8 @@ const ArticleReading: React.FC = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col mx-auto container  w-[85%] md:w-[70%] my-10">
-        <div className="article-body border dark:border-black-faded rounded-lg p-8">
+      <div className="flex flex-col mx-auto container  w-[95%] md:w-[70%] my-10">
+        <div className="article-body border dark:border-black-faded rounded-lg p-3 md:p-8">
           <div className="article-header">
             <h1 className="text-5xl font-bold text-neutral-600 dark:text-grey-faded">
               {article?.title}
@@ -47,94 +63,33 @@ const ArticleReading: React.FC = () => {
               {article?.publishedAt} • {article?.readTime} min read
             </p>
           </div>
-          <div className="article-content mt-8">
-            {article?.description.sections.map((section, index) => (
-              <div key={index} className="mb-8">
-                <h2 className="text-3xl font-semibold text-neutral-600 dark:text-grey-faded">
-                  {section.title}
-                </h2>
-                <p className="mt-2 text-neutral-600 dark:text-grey-faded text-xl">
-                  {section.content}
-                </p>
-                {section.image && (
-                  <img
-                    src={section.image.url}
-                    alt={section.image.alt}
-                    className="mt-4"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="article-footer mt-8 flex items-center">
-            <div className="article-meta-data flex gap-4 justify-end w-full">
-              <p className="text-neutral-600 dark:text-grey-faded rounded-lg px-4 bg-white shadow-sm dark:bg-black-faded">
-                <span className="font-semibold text-xl dark:text-neutral-200 text-neutral-600">
-                  {article?.metadata.likes}
-                </span>{" "}
-                Likes
-              </p>
-              <p className="text-neutral-600 dark:text-grey-faded rounded-lg px-4 bg-white shadow-sm dark:bg-black-faded">
-                <span className="font-semibold text-xl dark:text-neutral-200 text-neutral-600">
-                  {article?.metadata.comments}
-                </span>{" "}
-                Comments
-              </p>
-              <p className="text-neutral-600 dark:text-grey-faded rounded-lg px-4 bg-white shadow-sm dark:bg-black-faded">
-                <span className="font-semibold text-xl dark:text-neutral-200 text-neutral-600">
-                  {article?.metadata.shares}
-                </span>{" "}
-                Shares
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="article-metadata mt-8 border  dark:border-black-faded rounded-lg p-8  shadow-lg">
-          {/* Author Section */}
-          <h4 className="about-author-text text-3xl font-bold mb-6 text-neutral-600 dark:text-grey-faded">
-            About the author
-          </h4>
-          <div className="flex items-center mb-6">
-            <img
-              src={authorProfile?.profileUrl}
-              alt={authorProfile?.name}
-              className="w-16 h-16 rounded-full shadow-md"
+          {article?.description?.sections && (
+            <ArticleContent sections={article?.description.sections} />
+          )}
+          <div className="article-footer mt-8 flex flex-col items-center px-4">
+            <ArticleMetadata
+              likes={article?.metadata.likes || 0}
+              comments={article?.metadata.comments || 0}
+              shares={article?.metadata.shares || 0}
             />
-            <div className="ml-6">
-              <p className="text-xl font-semibold text-neutral-800 dark:text-gray-200">
-                {authorProfile?.name}
-              </p>
-              <p className="text-lg text-neutral-600 dark:text-gray-400">
-                {authorProfile?.bio}
-              </p>
-            </div>
-          </div>
-
-          {/* Follow Section */}
-          <div className="flex items-center justify-between  p-6 rounded-lg shadow-md">
-            <button className="bg-brand text-white py-2 px-6 rounded-full hover:bg-brand-dark transition duration-300 shadow-md">
-              Follow
-            </button>
-            <div className="ml-8">
-              <div className="flex items-center space-x-6">
-                <p className=" text-neutral-600 dark:text-gray-400">
-                  <span className="font-semibold text-xl text-neutral-800 dark:text-gray-200">
-                    {authorProfile?.metaData.followers}
-                  </span>{" "}
-                  Followers
-                </p>
-                <span className="text-neutral-400">•</span>
-                <p className=" text-neutral-800 dark:text-gray-200">
-                  <span className="font-semibold text-xl">
-                    {authorProfile?.metaData.following}
-                  </span>{" "}
-                  Following
-                </p>
-              </div>
-            </div>
+            <CommentList
+              articleId={article?.id || 0}
+              comments={articleComments}
+              fetchComments={fetchComments}
+              totalComments={article?.metadata.comments || 0}
+              isLoading={isArticleCommentsLoading}
+            />
           </div>
         </div>
+        {article && authorProfile && (
+          <ArticleAuthorInfo
+            name={authorProfile?.name}
+            profileUrl={authorProfile?.profileUrl}
+            bio={authorProfile?.bio}
+            socialLinks={authorProfile?.socialLinks}
+            metaData={authorProfile?.metaData}
+          />
+        )}
       </div>
     </Layout>
   );

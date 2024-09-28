@@ -1,5 +1,6 @@
 import { ArticleType, ArticleDetailsType } from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";
+import { CommentType } from "src/utils/types/comment";
 
 export class API {
   static namespace: string = "/api";
@@ -47,6 +48,21 @@ export class API {
     } catch (error) {
       console.error("Error fetching profile: ", error.message);
       return {} as ProfileType;
+    }
+  }
+
+  static async getCommentsForArticle(
+    articleId: string
+  ): Promise<CommentType[]> {
+    try {
+      const response = await fetch(
+        `${this.namespace}/article/${articleId}/comments`
+      );
+      const data = await response.json();
+      return data.comments;
+    } catch (error) {
+      console.error("Error fetching comments: ", error.message);
+      return [];
     }
   }
 }

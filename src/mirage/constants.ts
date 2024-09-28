@@ -202,7 +202,7 @@ export const LATEST_ARTICLES_RESPONSE = {
 
 export const ARTICLE_DETAILS_RESPONSE = {
   article: {
-    id: "1",
+    id: 1,
     title: "Cybersecurity in the Modern Age",
     description: {
       sections: [
@@ -279,4 +279,82 @@ export const PROFILE_RESPONSE = {
       articles: 50,
     },
   },
+};
+
+export const COMMENTS_RESPONSE = {
+  comments: [
+    {
+      id: 1,
+      comment:
+        "Great article! I learned a lot about cybersecurity but you can make it more engaging by adding some interactive elements like quizzes or polls.",
+      metadata: {
+        likes: 10,
+      },
+      author: {
+        name: "Eve Black",
+        username: "eveblack",
+        profileUrl:
+          "https://media.licdn.com/dms/image/C4E03AQELPNul1cg6Ag/profile-displayphoto-shrink_200_200/0/1618245713463?e=2147483647&v=beta&t=-9wL5ikCuB_jPlIofe_5cS8wEuiG_QYYy8bp3C4VgsM",
+      },
+      publishedAt: "08/11/2023 08:21:37 GMT",
+    },
+    {
+      id: "2",
+      comment: "I found this article very informative. Thanks for sharing!",
+      metadata: {
+        likes: 5,
+      },
+      author: {
+        name: "Bob Smith",
+        username: "bobsmith",
+        profileUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblJqbcr4JGZSgcAeHyHKwsYQYHAi6ZZXTjw&s",
+      },
+      publishedAt: "02/12/2024 12:00:00 GMT",
+    },
+    {
+      id: "3",
+      comment: "This is a great article. I enjoyed reading it.",
+      metadata: {
+        likes: 3,
+      },
+      author: {
+        name: "Alice Johnson",
+        username: "alicejohnson",
+        profileUrl:
+          "https://pbs.twimg.com/profile_images/1724141748555767808/0wiCimhs_400x400.jpg",
+      },
+      publishedAt: "05/12/2024 14:30:00 GMT",
+    },
+    {
+      id: "4",
+      comment:
+        "I have been following your work for a while now and I must say, this is one of your best articles. Keep up the good work!",
+      metadata: {
+        likes: 7,
+      },
+      author: {
+        name: "Charlie Brown",
+        username: "charliebrown",
+        profileUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-htWTQJyDTVViiHi0kB6zQRDMjR0yOZJ_xA&s",
+      },
+      publishedAt: "10/12/2024 16:45:00 GMT",
+    },
+    {
+      id: "5",
+      comment:
+        "Hats off to you for writing such an informative article, I will suggest this to my friends. But I had a question, how can I protect my data from cyber attacks such as ransomware and phishing while on public Wifi, because most of the time I spend is ouside of my zone ? Can you provide some tips?",
+      metadata: {
+        likes: 2,
+      },
+      author: {
+        name: "Zhang Zivi",
+        username: "zhangzivi",
+        profileUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuxwT_aTmXk5z1O6ISgJN3U6QzfeyeDt_N_g&s",
+      },
+      publishedAt: "15/12/2024 18:00:00 GMT",
+    },
+  ],
 };

@@ -1,0 +1,46 @@
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CommentType as CommentProps } from "src/utils/types/comment";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+
+const CommentItem: React.FC<CommentProps> = ({
+  author,
+  comment,
+  publishedAt,
+  metadata,
+}) => {
+  return (
+    <div className="comment-card flex items-center gap-4 mt-4 relative w-full">
+      <img
+        src={author?.profileUrl}
+        alt={author?.name}
+        className="w-12 h-12 rounded-full shadow-md"
+      />
+      <div className="p-4 w-full rounded-lg shadow-sm border border-grey-faded dark:border-black-faded relative after:content-[''] after:absolute after:left-[-29px] after:top-1/2 after:-translate-y-1/2 after:border-[14px] after:border-transparent after:border-r-grey-faded dark:after:border-r-black-faded">
+        <div className="flex items-center">
+          <p className="text-neutral-800 dark:text-gray-200 font-semibold text-lg">
+            {author?.name}
+          </p>
+          <p className="ml-2 text-neutral-600 dark:text-gray-400 text-sm">
+            {publishedAt}
+          </p>
+        </div>
+
+        <p className="text-neutral-600 dark:text-gray-400">{comment}</p>
+        <div className="comment-meta-data flex items-center justify-between mt-4">
+          <div className="flex items-center gap-4">
+            <div className="thumbs-up-count text-neutral-600 dark:text-gray-400">
+              <FontAwesomeIcon
+                icon={faThumbsUp}
+                className="ml-2 hover:text-green-600"
+              />
+              <span className="ml-2">{metadata.likes}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CommentItem;

@@ -29,16 +29,10 @@ export interface SectionType {
 }
 
 export interface ArticleDetailsType {
-  id: string;
+  id: number;
   title: string;
-  description: {
-    sections: Array<SectionType>;
-  };
-  metadata: {
-    likes: number;
-    comments: number;
-    shares: number;
-  };
+  description: ArticleDescriptionType;
+  metadata: ArticleMetadataType;
   tags: string[];
   postImage: string;
   publishedAt: string;
@@ -47,4 +41,14 @@ export interface ArticleDetailsType {
     name: string;
     profileUrl: string;
   };
+}
+
+export interface ArticleDescriptionType {
+  sections: Array<SectionType>;
+}
+
+export interface ArticleMetadataType {
+  likes: number;
+  comments: number;
+  shares: number;
 }
