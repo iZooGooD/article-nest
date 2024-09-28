@@ -7,7 +7,6 @@ interface CommentListProps {
   totalComments: number;
   comments: Array<CommentType>;
   fetchComments: (articleId: number) => void;
-  isLoading: boolean;
 }
 
 const CommentList: React.FC<CommentListProps> = ({
@@ -15,7 +14,6 @@ const CommentList: React.FC<CommentListProps> = ({
   totalComments,
   comments,
   fetchComments,
-  isLoading,
 }) => {
   const renderCommentItems = () =>
     comments.map((comment) => (

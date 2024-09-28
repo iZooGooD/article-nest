@@ -86,7 +86,6 @@ const ArticleReading: React.FC = () => {
                 comments={articleComments}
                 fetchComments={fetchComments}
                 totalComments={article.metadata.comments}
-                isLoading={isArticleCommentsLoading}
               />
             </div>
           ) : (
