@@ -329,7 +329,7 @@ export const COMMENTS_RESPONSE = {
     {
       id: "4",
       comment:
-        "I have been following your work for a while now and I must say, this is one of your best articles. Keep up the good work!",
+        "I have been following your work for a while now and I must say, this is one of your best articles. Keep up the good work 👍🏻!",
       metadata: {
         likes: 7,
       },

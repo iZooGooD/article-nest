@@ -32,7 +32,7 @@ const CommentItem: React.FC<CommentProps> = ({
             <div className="thumbs-up-count text-neutral-600 dark:text-gray-400">
               <FontAwesomeIcon
                 icon={faThumbsUp}
-                className="ml-2 hover:text-green-600"
+                className="ml-2 hover:text-red-500"
               />
               <span className="ml-2">{metadata.likes}</span>
             </div>

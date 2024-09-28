@@ -1,6 +1,6 @@
 import React from "react";
 import { CommentType } from "src/utils/types/comment";
-import CommentItem from "../Comment/CommentItem";
+import CommentItem from "src/components/CommentItem/CommentItem";
 
 interface CommentListProps {
   articleId: number;
@@ -30,11 +30,10 @@ const CommentList: React.FC<CommentListProps> = ({
     ));
 
   const renderCommentSort = () => (
-    <select className="rounded-lg p-1 shadow-sm dark:text-neutral-200 text-neutral-600 w-32 bg-white dark:bg-black-faded">
-      <option value="default">Sort by</option>
-      <option value="popular">Popular</option>
-      <option value="newest">Latest</option>
-      <option value="oldest">Oldest</option>
+    <select className="rounded-lg p-1 shadow-sm dark:text-neutral-200 text-neutral-600 w-36 bg-white dark:bg-black-faded">
+      <option value="popular">Sort by: Popular</option>
+      <option value="newest">Sort by: Latest</option>
+      <option value="oldest">Sort by: Oldest</option>
     </select>
   );
 

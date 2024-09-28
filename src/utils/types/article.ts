@@ -4,7 +4,7 @@
  */
 
 export interface ArticleType {
-  id: string;
+  id: number;
   title: string;
   description: string;
   tags: string[];

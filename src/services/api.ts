@@ -52,7 +52,7 @@ export class API {
   }
 
   static async getCommentsForArticle(
-    articleId: string
+    articleId: number
   ): Promise<CommentType[]> {
     try {
       const response = await fetch(

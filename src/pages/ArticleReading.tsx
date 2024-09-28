@@ -10,6 +10,9 @@ import { CommentType } from "src/utils/types/comment";
 import ArticleMetadata from "src/components/ArticleMetadata/ArticleMetadata";
 import ArticleContent from "src/components/ArticleContent/ArticleContent";
 import ArticleAuthorInfo from "src/components/ArticleAuthorInfo/ArticleAuthorInfo";
+import ArticleContentSkeleton from "src/components/ArticleContentSkeleton/ArticleContentSkeleton";
+import CommentListSkeleton from "src/components/CommentListSkeleton/CommentListSkeleton";
+import ArticleAuthorInfoSkeleton from "src/components/ArticleAuthorInfoSkeleton/ArticleAuthorInfoSkeleton";
 
 const ArticleReading: React.FC = () => {
   const { username, slug } = useParams();
@@ -29,6 +32,10 @@ const ArticleReading: React.FC = () => {
     setIsArticleCommentsLoading(false);
   };
 
+  const isArticleContentLoaded = article && !isArticleLoading;
+
+  const isArticleAuthorInfoLoaded = authorProfile && !isAuthorProfileLoading;
+
   useEffect(() => {
     const fetchArticle = async (slug: string) => {
       const articleDetails = await API.getArticleDetails(slug);
@@ -44,51 +51,59 @@ const ArticleReading: React.FC = () => {
 
     if (slug) {
       fetchArticle(slug);
-      fetchComments(slug);
+      fetchComments(Number(slug));
     }
     if (username) {
       fetchAuthorProfileDetails(username);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, username]);
 
   return (
     <Layout>
       <div className="flex flex-col mx-auto container  w-[95%] md:w-[70%] my-10">
         <div className="article-body border dark:border-black-faded rounded-lg p-3 md:p-8">
-          <div className="article-header">
-            <h1 className="text-5xl font-bold text-neutral-600 dark:text-grey-faded">
-              {article?.title}
-            </h1>
-            <p className="dark:text-gray-400 text-neutral-600 mt-2">
-              {article?.publishedAt} • {article?.readTime} min read
-            </p>
-          </div>
-          {article?.description?.sections && (
-            <ArticleContent sections={article?.description.sections} />
+          {isArticleContentLoaded ? (
+            <ArticleContent
+              title={article.title}
+              publishedAt={article.publishedAt}
+              readTime={article.readTime}
+              sections={article?.description.sections}
+            />
+          ) : (
+            <ArticleContentSkeleton />
           )}
-          <div className="article-footer mt-8 flex flex-col items-center px-2 md:px-4">
-            <ArticleMetadata
-              likes={article?.metadata.likes || 0}
-              comments={article?.metadata.comments || 0}
-              shares={article?.metadata.shares || 0}
-            />
-            <CommentList
-              articleId={article?.id || 0}
-              comments={articleComments}
-              fetchComments={fetchComments}
-              totalComments={article?.metadata.comments || 0}
-              isLoading={isArticleCommentsLoading}
-            />
-          </div>
+
+          {isArticleContentLoaded ? (
+            <div className="article-footer mt-4 flex flex-col items-center px-2 md:px-4">
+              <ArticleMetadata
+                likes={article.metadata.likes}
+                comments={article.metadata.comments}
+                shares={article.metadata.shares}
+              />
+              <CommentList
+                articleId={article?.id}
+                comments={articleComments}
+                fetchComments={fetchComments}
+                totalComments={article.metadata.comments}
+                isLoading={isArticleCommentsLoading}
+              />
+            </div>
+          ) : (
+            <CommentListSkeleton />
+          )}
         </div>
-        {article && authorProfile && (
+
+        {isArticleAuthorInfoLoaded ? (
           <ArticleAuthorInfo
-            name={authorProfile?.name}
-            profileUrl={authorProfile?.profileUrl}
-            bio={authorProfile?.bio}
-            socialLinks={authorProfile?.socialLinks}
-            metaData={authorProfile?.metaData}
+            name={authorProfile.name}
+            profileUrl={authorProfile.profileUrl}
+            bio={authorProfile.bio}
+            socialLinks={authorProfile.socialLinks}
+            metaData={authorProfile.metaData}
           />
+        ) : (
+          <ArticleAuthorInfoSkeleton />
         )}
       </div>
     </Layout>
