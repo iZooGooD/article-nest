@@ -8,17 +8,49 @@ import {
   faUserCircle,
   faUser,
   faCog,
+  faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { PrivateProfileType } from "src/utils/types/profile";
 import { API } from "src/services/api";
 import Layout from "src/components/Common/Layout/Layout";
 import MyProfileSkeleton from "src/components/MyProfile/MyProfileSkeleton";
 import { toast } from "react-toastify";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { profileInputSchema } from "src/utils/validations/profileform";
+import { z } from "zod";
 
 const MyProfile: React.FC = () => {
   const [profile, setProfile] = useState<PrivateProfileType | null>(null);
   const [editing, setEditing] = useState(false);
   const [activeTab, setActiveTab] = useState("personal");
+
+  type fieldType = {
+    name: string;
+    label: string;
+    type: string;
+    icon: IconDefinition;
+  };
+
+  const fields: Array<fieldType> = [
+    {
+      name: "firstName",
+      label: "First Name",
+      type: "text",
+      icon: faUser,
+    },
+    {
+      name: "lastName",
+      label: "Last Name",
+      type: "text",
+      icon: faUser,
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      icon: faEnvelope,
+    },
+  ];
 
   // Consolidated formData for inputs and toggles
   const [formData, setFormData] = useState({
@@ -29,6 +61,8 @@ const MyProfile: React.FC = () => {
     articleUpdates: true,
     emailNotifications: true,
   });
+
+  const [inputErrors, setInputErrors] = useState<string[]>([]);
 
   const fetchProfile = async () => {
     const profileData = await API.getMyProfile();
@@ -59,9 +93,23 @@ const MyProfile: React.FC = () => {
   };
 
   const handleSave = () => {
+    console.log("formData", formData);
+    try {
+      profileInputSchema.parse({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+      });
+      setInputErrors([]);
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        setInputErrors(e.errors.map((error) => error.message));
+        toast.error("Please check the form for errors");
+      }
+      return;
+    }
     toast.success("Your profile changes has been updated!");
     setEditing(false);
-    // Implement the save logic here, potentially making an API call to update the user's info.
   };
 
   useEffect(() => {
@@ -82,7 +130,7 @@ const MyProfile: React.FC = () => {
             />
             <div>
               <h2 className="text-3xl font-bold text-neutral-800 dark:text-gray-200">
-                {formData.firstName} {formData.lastName}
+                {profile.firstName} {profile.lastName}
               </h2>
               <button className="mt-3 py-2 px-4 bg-brand-dark text-neutral-600 dark:text-gray-400 rounded-lg shadow-md hover:bg-brand hover:text-white transition duration-300">
                 Change Profile Picture
@@ -121,19 +169,18 @@ const MyProfile: React.FC = () => {
               <div className="personal-info-tab mt-6">
                 {!editing ? (
                   <>
-                    {["firstName", "lastName", "email"].map((field) => (
+                    {fields.map((field, i) => (
                       <div
-                        key={field}
+                        key={i}
                         className="info-field mt-4 text-neutral-600 dark:text-gray-400"
                       >
                         <FontAwesomeIcon
-                          icon={faUser}
+                          icon={field.icon}
                           className="mr-2 text-brand"
                         />
-                        <strong>{`${
-                          field.charAt(0).toUpperCase() + field.slice(1)
-                        }:`}</strong>{" "}
-                        {formData[field as keyof typeof formData]}
+                        <strong>{field.label}</strong>
+                        {": "}
+                        {formData[field.name as keyof typeof formData]}
                       </div>
                     ))}
                     <button
@@ -147,22 +194,35 @@ const MyProfile: React.FC = () => {
                 ) : (
                   <div className="editable-fields mt-6">
                     {/* Handle text inputs */}
-                    {["firstName", "lastName", "email"].map((field) => (
-                      <div key={field} className="mb-4">
+                    {fields.map((field, i) => (
+                      <div key={i} className="mb-4">
                         <label className="block text-neutral-800 dark:text-gray-200">
-                          {`${field.charAt(0).toUpperCase() + field.slice(1)}:`}
+                          {field.label}
                         </label>
                         <input
-                          type={field === "email" ? "email" : "text"}
-                          name={field}
-                          value={
-                            formData[field as keyof typeof formData] as string
-                          }
+                          type={field.type}
+                          name={field.name}
+                          value={String(
+                            formData[field.name as keyof typeof formData]
+                          )}
                           onChange={handleInputChange}
                           className="w-full px-4 py-2 rounded-lg border border-gray-300 text-neutral-600 dark:text-black dark:bg-gray-300"
                         />
                       </div>
                     ))}
+                    {inputErrors.length > 0 && (
+                      <div className="mt-4">
+                        {inputErrors.map((error, i) => (
+                          <p key={i} className="text-red-500 text-sm">
+                            <FontAwesomeIcon
+                              icon={faCircleExclamation}
+                              className="mr-2"
+                            />
+                            {error}
+                          </p>
+                        ))}
+                      </div>
+                    )}
                     <button
                       onClick={handleSave}
                       className="mt-6 py-2 px-4 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-300"
