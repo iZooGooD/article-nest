@@ -3,6 +3,8 @@ import { useState } from "react";
 import Footer from "src/components/Common/Footer/Footer";
 import { searchSchema } from "src/utils/validations/search";
 import { z } from "zod";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout({ children }: { children: React.ReactNode }) {
   // SignInMenu states and handlers
@@ -63,6 +65,15 @@ function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <Footer />
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+      />
     </div>
   );
 }

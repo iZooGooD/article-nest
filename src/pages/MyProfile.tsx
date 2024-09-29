@@ -13,6 +13,7 @@ import { PrivateProfileType } from "src/utils/types/profile";
 import { API } from "src/services/api";
 import Layout from "src/components/Common/Layout/Layout";
 import MyProfileSkeleton from "src/components/MyProfile/MyProfileSkeleton";
+import { toast } from "react-toastify";
 
 const MyProfile: React.FC = () => {
   const [profile, setProfile] = useState<PrivateProfileType | null>(null);
@@ -58,6 +59,7 @@ const MyProfile: React.FC = () => {
   };
 
   const handleSave = () => {
+    toast.success("Your profile changes has been updated!");
     setEditing(false);
     // Implement the save logic here, potentially making an API call to update the user's info.
   };
