@@ -1,6 +1,7 @@
 import { ArticleType, ArticleDetailsType } from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";
 import { CommentType } from "src/utils/types/comment";
+import { PrivateProfileType } from "src/utils/types/profile";
 
 export class API {
   static namespace: string = "/api";
@@ -74,6 +75,17 @@ export class API {
     } catch (error) {
       console.error("Error fetching articles by author: ", error.message);
       return [];
+    }
+  }
+
+  static async getMyProfile(): Promise<PrivateProfileType> {
+    try {
+      const response = await fetch(`${this.namespace}/my-profile`);
+      const data = await response.json();
+      return data.profile;
+    } catch (error) {
+      console.error("Error fetching my profile: ", error.message);
+      return {} as PrivateProfileType;
     }
   }
 }

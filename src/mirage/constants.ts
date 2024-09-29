@@ -416,3 +416,74 @@ export const COMMENTS_RESPONSE = {
     },
   ],
 };
+
+export const MY_PROFILE_RESPONSE = {
+  profile: {
+    id: "1",
+    firstName: "Eve",
+    lastName: "Black",
+    username: "eveblack",
+    email: "eveblack112@yahoo.com",
+    profileUrl:
+      "https://media.licdn.com/dms/image/C4E03AQELPNul1cg6Ag/profile-displayphoto-shrink_200_200/0/1618245713463?e=2147483647&v=beta&t=-9wL5ikCuB_jPlIofe_5cS8wEuiG_QYYy8bp3C4VgsM",
+    bio: "Cybersecurity Expert | Technology Enthusiast | Speaker | Writer | Blogger",
+    keyHighlights: {
+      profileViews: 330,
+      articlesPublishedMonth: 3,
+      articlesEngaged: 20,
+    },
+    socialLinks: [
+      {
+        name: "Twitter",
+        url: "https://twitter.com/eveblack",
+      },
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/eveblack",
+      },
+      {
+        name: "Website",
+        url: "https://www.eveblack.com",
+      },
+    ],
+    metaData: {
+      followers: 2,
+      following: 3,
+      articles: 3,
+    },
+    following: [
+      {
+        id: "2",
+        name: "Bob Smith",
+        username: "bobsmith",
+      },
+      {
+        id: "3",
+        name: "Alice Johnson",
+        username: "alicejohnson",
+      },
+      {
+        id: "4",
+        name: "Charlie Brown",
+        username: "charliebrown",
+      },
+    ],
+    followers: [
+      {
+        id: "5",
+        name: "Zhang Zivi",
+        username: "zhangzivi",
+      },
+      {
+        id: "6",
+        name: "Dana White",
+        username: "danawhite",
+      },
+    ],
+    preferences: {
+      isPrivate: false,
+      articleUpdatesNotifications: true,
+      emailNotifications: true,
+    },
+  },
+};

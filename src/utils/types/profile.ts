@@ -22,3 +22,24 @@ export interface KeyHighlightsType {
   articlesPublishedMonth: number;
   articlesEngaged: number;
 }
+export interface PrivateProfileType extends ProfileType {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  following: Array<{
+    id: string;
+    name: string;
+    username: string;
+  }>;
+  followers: Array<{
+    id: string;
+    name: string;
+    username: string;
+  }>;
+  preferences: {
+    isPrivate: boolean;
+    articleUpdatesNotifications: boolean;
+    emailNotifications: boolean;
+  };
+}

@@ -6,6 +6,7 @@ import {
   ARTICLE_PROFILE_RESPONSE,
   COMMENTS_RESPONSE,
   AUTHOR_ARTICLES_RESPONSE,
+  MY_PROFILE_RESPONSE,
 } from "./constants";
 
 export default function () {
@@ -56,6 +57,14 @@ export default function () {
           setTimeout(() => {
             resolve(COMMENTS_RESPONSE);
           }, 2000);
+        });
+      });
+
+      this.get("/api/my-profile", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(MY_PROFILE_RESPONSE);
+          }, 0);
         });
       });
     },

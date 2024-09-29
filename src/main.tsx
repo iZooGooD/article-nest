@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import makeServer from "./mirage/server";
 import ArticleReading from "./pages/ArticleReading.tsx";
 import AuthorProfile from "./pages/AuthorProfile.tsx";
+import MyProfile from "./pages/MyProfile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: ":username",
     element: <AuthorProfile />,
+  },
+  {
+    path: "myProfile",
+    element: <MyProfile />,
   },
 ]);
 
