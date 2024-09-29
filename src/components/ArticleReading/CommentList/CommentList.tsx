@@ -1,6 +1,7 @@
 import React from "react";
 import { CommentType } from "src/utils/types/comment";
 import CommentItem from "src/components/ArticleReading/CommentItem/CommentItem";
+import Button from "src/components/Common/_ux/Button/Button";
 
 interface CommentListProps {
   articleId: number;
@@ -43,12 +44,12 @@ const CommentList: React.FC<CommentListProps> = ({
 
   const renderLoadMoreButton = () => (
     <div className="comments-load-more my-4 w-full flex md:justify-end">
-      <button
-        className="bg-neutral-600 p-2 w-full md:w-auto"
+      <Button
+        text="Load more comments"
+        type="secondary"
+        size="s"
         onClick={() => fetchComments(articleId)}
-      >
-        Load more comments
-      </button>
+      />
     </div>
   );
 
@@ -74,9 +75,7 @@ const CommentList: React.FC<CommentListProps> = ({
             className="px-4 py-2 my-4 w-full shadow-sm dark:bg-black-faded text-neutral-600 dark:text-white"
             rows={4}
           />
-          <button className="bg-brand text-white py-2 px-4 rounded-sm shadow-md">
-            Comment
-          </button>
+          <Button text="Post Comment" type="primary" size="s" />
         </div>
       </div>
     </div>

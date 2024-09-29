@@ -4,6 +4,7 @@ import { ArticleType } from "src/utils/types/article";
 import { API } from "src/services/api";
 import LatestArticles from "src/components/Home/LatestArticles/LatestArticles";
 import Layout from "src/components/Common/Layout/Layout";
+import Button from "src/components/Common/_ux/Button/Button";
 
 function Home() {
   // State for trending and latest articles
@@ -39,10 +40,15 @@ function Home() {
           articles={latestArticles}
           isLoading={isLatestArticlesLoading}
         />
-        <div className="my-8 flex">
-          <button className="mx-auto bg-brand text-white py-2 px-4 rounded-md">
-            Explore more
-          </button>
+        <div className="my-8 flex justify-center">
+          <Button
+            type="primary"
+            size="md"
+            onClick={() => {
+              console.log("View all articles clicked");
+            }}
+            text="Explore more"
+          />
         </div>
       </div>
     </Layout>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "src/components/Common/_ux/Button/Button";
 interface ArticleAuthorInfoProps {
   name: string;
   username: string;
@@ -48,9 +49,7 @@ const ArticleAuthorInfo: React.FC<ArticleAuthorInfoProps> = ({
           </div>
         </div>
         <div className="ml-auto">
-          <button className="bg-brand text-white py-2 px-6 rounded-full hover:bg-brand-dark transition duration-300 shadow-md">
-            Follow
-          </button>
+          <Button text="Follow" size="s" type="primary" />
         </div>
       </div>
     </div>
