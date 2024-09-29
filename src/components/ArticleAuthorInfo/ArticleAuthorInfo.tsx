@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ProfileType as ArticleAuthorInfoProps } from "src/utils/types/profile";
+interface ArticleAuthorInfoProps {
+  name: string;
+  username: string;
+  profileUrl: string;
+  bio: string;
+  metaData: {
+    followers: number;
+    following: number;
+  };
+}
 
 const ArticleAuthorInfo: React.FC<ArticleAuthorInfoProps> = ({
   name,

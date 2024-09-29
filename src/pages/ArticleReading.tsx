@@ -106,7 +106,6 @@ const ArticleReading: React.FC = () => {
             username={authorProfile.username}
             profileUrl={authorProfile.profileUrl}
             bio={authorProfile.bio}
-            socialLinks={authorProfile.socialLinks}
             metaData={authorProfile.metaData}
           />
         ) : (
