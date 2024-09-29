@@ -63,6 +63,7 @@ const ArticleReading: React.FC = () => {
     if (article) {
       fetchComments(article.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [article]);
 
   return (
@@ -102,6 +103,7 @@ const ArticleReading: React.FC = () => {
         {isArticleAuthorInfoLoaded ? (
           <ArticleAuthorInfo
             name={authorProfile.name}
+            username={authorProfile.username}
             profileUrl={authorProfile.profileUrl}
             bio={authorProfile.bio}
             socialLinks={authorProfile.socialLinks}

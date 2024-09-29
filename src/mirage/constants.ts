@@ -251,7 +251,7 @@ export const ARTICLE_DETAILS_RESPONSE = {
   },
 };
 
-export const PROFILE_RESPONSE = {
+export const ARTICLE_PROFILE_RESPONSE = {
   profile: {
     id: "1",
     name: "Eve Black",
@@ -259,6 +259,11 @@ export const PROFILE_RESPONSE = {
     profileUrl:
       "https://media.licdn.com/dms/image/C4E03AQELPNul1cg6Ag/profile-displayphoto-shrink_200_200/0/1618245713463?e=2147483647&v=beta&t=-9wL5ikCuB_jPlIofe_5cS8wEuiG_QYYy8bp3C4VgsM",
     bio: "Cybersecurity Expert | Technology Enthusiast | Speaker | Writer | Blogger",
+    keyHighlights: {
+      profileViews: 330,
+      articlesPublishedMonth: 3,
+      articlesEngaged: 20,
+    },
     socialLinks: [
       {
         name: "Twitter",
@@ -276,9 +281,62 @@ export const PROFILE_RESPONSE = {
     metaData: {
       followers: 1000,
       following: 100,
-      articles: 50,
+      articles: 3,
     },
   },
+};
+
+export const AUTHOR_ARTICLES_RESPONSE = {
+  articles: [
+    {
+      id: "1",
+      title: "Cybersecurity in the Modern Age",
+      description:
+        "Understand the importance of cybersecurity and the measures being taken to protect data in the digital age.",
+      tags: ["Cybersecurity", "Technology"],
+      postImage:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuvHN__CfvDhvUS-_jkfPvAX9i4AiQqnLTmw&s",
+      publishedAt: "30th November 2024",
+      author: {
+        name: "Eve Black",
+        username: "eveblack",
+        profileUrl:
+          "https://media.licdn.com/dms/image/C4E03AQELPNul1cg6Ag/profile-displayphoto-shrink_200_200/0/1618245713463?e=2147483647&v=beta&t=-9wL5ikCuB_jPlIofe_5cS8wEuiG_QYYy8bp3C4VgsM",
+      },
+    },
+    {
+      id: "2",
+      title: "The Future of Renewable Energy",
+      description:
+        "Explore the advancements in renewable energy and how they are shaping a sustainable future.",
+      tags: ["Renewable Energy", "Environment"],
+      postImage:
+        "https://community.nasscom.in/sites/default/files/styles/960_x_600/public/media/images/25-r.png?itok=NluExaDx",
+      publishedAt: "5th November 2024",
+      author: {
+        name: "Bob Smith",
+        username: "bobsmith",
+        profileUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblJqbcr4JGZSgcAeHyHKwsYQYHAi6ZZXTjw&s",
+      },
+    },
+    {
+      id: "3",
+      title: "Blockchain Beyond Cryptocurrency",
+      description:
+        "Learn about the various applications of blockchain technology beyond just cryptocurrencies.",
+      tags: ["Blockchain", "Technology"],
+      postImage:
+        "https://vibhuti.biz/wp-content/uploads/2024/06/Blockchain-in-hiring.png",
+      publishedAt: "15th November 2024",
+      author: {
+        name: "Charlie Brown",
+        username: "charliebrown",
+        profileUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-htWTQJyDTVViiHi0kB6zQRDMjR0yOZJ_xA&s",
+      },
+    },
+  ],
 };
 
 export const COMMENTS_RESPONSE = {

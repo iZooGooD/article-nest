@@ -3,8 +3,9 @@ import {
   TRENDING_ARTICLES_RESPONSE,
   LATEST_ARTICLES_RESPONSE,
   ARTICLE_DETAILS_RESPONSE,
-  PROFILE_RESPONSE,
+  ARTICLE_PROFILE_RESPONSE,
   COMMENTS_RESPONSE,
+  AUTHOR_ARTICLES_RESPONSE,
 } from "./constants";
 
 export default function () {
@@ -37,8 +38,16 @@ export default function () {
       this.get("/api/profile/:username", () => {
         return new Promise((resolve) => {
           setTimeout(() => {
-            resolve(PROFILE_RESPONSE);
-          }, 2500);
+            resolve(ARTICLE_PROFILE_RESPONSE);
+          }, 0);
+        });
+      });
+
+      this.get("/api/:username/articles", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(AUTHOR_ARTICLES_RESPONSE);
+          }, 1000);
         });
       });
 

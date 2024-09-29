@@ -65,4 +65,15 @@ export class API {
       return [];
     }
   }
+
+  static async getArticlesByAuthor(username: string): Promise<ArticleType[]> {
+    try {
+      const response = await fetch(`${this.namespace}/${username}/articles`);
+      const data = await response.json();
+      return data.articles;
+    } catch (error) {
+      console.error("Error fetching articles by author: ", error.message);
+      return [];
+    }
+  }
 }

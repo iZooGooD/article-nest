@@ -5,6 +5,7 @@ import "./index.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import makeServer from "./mirage/server";
 import ArticleReading from "./pages/ArticleReading.tsx";
+import AuthorProfile from "./pages/AuthorProfile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: ":username/:slug",
     element: <ArticleReading />,
+  },
+  {
+    path: ":username",
+    element: <AuthorProfile />,
   },
 ]);
 

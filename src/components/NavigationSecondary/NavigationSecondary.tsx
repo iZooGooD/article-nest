@@ -4,6 +4,7 @@ import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MobileNavigation from "src/components/MobileNavigation/MobileNavigation";
 import LinkText from "src/components/common/LinkText/LinkText";
+import { Link } from "react-router-dom";
 
 const NavigationSecondary: React.FC = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
@@ -13,12 +14,14 @@ const NavigationSecondary: React.FC = () => {
   return (
     <nav className="flex bg-purple-dark h-20 items-center justify-between md:justify-around px-6">
       <div className="flex">
-        <img
-          src={logo}
-          alt="site logo"
-          className="h-[175px] outline-none"
-          height={175}
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="site logo"
+            className="h-[175px] outline-none"
+            height={175}
+          />
+        </Link>
       </div>
       <ul className="hidden md:flex">
         <LinkText to="/" text="Home" />

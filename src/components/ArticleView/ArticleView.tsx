@@ -45,7 +45,10 @@ const ArticleView: React.FC<ArticleProps> = ({
             className="w-8 h-8 rounded-full mr-2"
           />
           <span className="dark:text-neutral-200 text-neutral-600 text-sm">
-            {author.name} on {publishedAt}
+            <Link className="hover:underline" to={`/${author.username}`}>
+              {author.name}
+            </Link>{" "}
+            on {publishedAt}
           </span>
         </div>
       </div>

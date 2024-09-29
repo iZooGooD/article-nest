@@ -2,7 +2,7 @@ import React from "react";
 
 const ArticleWideViewSkeleton: React.FC = () => {
   return (
-    <div className="md:flex-row flex flex-row-reverse rounded-md dark:bg-black-faded bg-white shadow-sm">
+    <div className="md:flex-row flex flex-row-reverse rounded-md dark:bg-black-faded bg-white shadow-sm my-2">
       {/* Skeleton for the image */}
       <div className="h-[100%] md:h-[180px] md:w-[380px] image-wrapper flex items-center">
         <div className="h-[100px] w-[220px] md:h-[180px] md:w-[380px] bg-gray-200 dark:bg-slate-700 animate-pulse rounded-sm"></div>

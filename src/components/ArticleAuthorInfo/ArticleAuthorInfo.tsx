@@ -1,50 +1,47 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ProfileType as ArticleAuthorInfoProps } from "src/utils/types/profile";
 
 const ArticleAuthorInfo: React.FC<ArticleAuthorInfoProps> = ({
   name,
+  username,
   profileUrl,
   bio,
   metaData,
 }) => {
   return (
-    <div className="mt-8 border  dark:border-black-faded rounded-lg p-3 md:p-8  shadow-lg">
+    <div className="author-header p-6 bg-gray-100 dark:bg-black-faded rounded-lg shadow-md mt-4">
       <h4 className="about-author-text text-3xl font-bold mb-6 text-neutral-600 dark:text-grey-faded">
         About the author
       </h4>
-      <div className="flex items-center mb-6">
-        <img
-          src={profileUrl}
-          alt={name}
-          className="w-16 h-16 rounded-full shadow-md"
-        />
-        <div className="ml-6">
-          <p className="text-xl font-semibold text-neutral-800 dark:text-gray-200">
-            {name}
-          </p>
+      <div className="mt-8 flex flex-col md:flex-row items-center gap-6">
+        <Link to={`/${username}`}>
+          <img
+            src={profileUrl}
+            alt={name}
+            className="w-32 h-32 rounded-full shadow-lg"
+          />
+        </Link>
+        <div>
+          <Link to={`/${username}`}>
+            <h2 className="text-2xl font-bold text-neutral-800 dark:text-gray-200">
+              {name}
+            </h2>
+          </Link>
           <p className="text-lg text-neutral-600 dark:text-gray-400">{bio}</p>
-        </div>
-      </div>
-      <div className="flex items-center justify-between  p-6 rounded-lg shadow-md">
-        <button className="bg-brand text-white py-2 px-6 rounded-full hover:bg-brand-dark transition duration-300 shadow-md">
-          Follow
-        </button>
-        <div className="ml-8">
-          <div className="flex items-center space-x-6">
-            <p className=" text-neutral-600 dark:text-gray-400">
-              <span className="font-semibold text-xl text-neutral-800 dark:text-gray-200">
-                {metaData.followers}
-              </span>{" "}
-              Followers
+          <div className="author-meta-data flex items-center gap-8 mt-4">
+            <p className="text-sm text-neutral-800 dark:text-gray-400">
+              <strong>{metaData.followers}</strong> Followers
             </p>
-            <span className="text-neutral-400">•</span>
-            <p className=" text-neutral-800 dark:text-gray-200">
-              <span className="font-semibold text-xl">
-                {metaData.following}
-              </span>{" "}
-              Following
+            <p className="text-sm text-neutral-800 dark:text-gray-400">
+              <strong>{metaData.following}</strong> Following
             </p>
           </div>
+        </div>
+        <div className="ml-auto">
+          <button className="bg-brand text-white py-2 px-6 rounded-full hover:bg-brand-dark transition duration-300 shadow-md">
+            Follow
+          </button>
         </div>
       </div>
     </div>
