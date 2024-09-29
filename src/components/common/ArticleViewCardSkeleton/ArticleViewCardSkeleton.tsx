@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArticleViewSkeleton: React.FC = () => {
+const ArticleViewCardSkeleton: React.FC = () => {
   return (
     <div className="flex flex-col rounded-sm dark:bg-slate-800">
       {/* Skeleton for the image */}
@@ -36,4 +36,4 @@ const ArticleViewSkeleton: React.FC = () => {
   );
 };
 
-export default ArticleViewSkeleton;
+export default ArticleViewCardSkeleton;

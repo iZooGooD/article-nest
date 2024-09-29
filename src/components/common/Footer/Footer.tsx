@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "src/assets/article-nest-logo.png";
-import LinkText from "src/components/common/LinkText/LinkText";
+import LinkText from "src/components/Common/_ux/LinkText/LinkText";
 
 const Footer: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArticleWideViewSkeleton: React.FC = () => {
+const ArticleWideViewCardSkeleton: React.FC = () => {
   return (
     <div className="md:flex-row flex flex-row-reverse rounded-md dark:bg-black-faded bg-white shadow-sm my-2">
       {/* Skeleton for the image */}
@@ -34,4 +34,4 @@ const ArticleWideViewSkeleton: React.FC = () => {
   );
 };
 
-export default ArticleWideViewSkeleton;
+export default ArticleWideViewCardSkeleton;

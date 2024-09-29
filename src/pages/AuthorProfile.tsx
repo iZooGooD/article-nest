@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Layout from "src/components/Layout/Layout";
+import Layout from "src/components/Common/Layout/Layout";
 import { useParams } from "react-router-dom";
 import { API } from "src/services/api";
-import ArticleWideView from "src/components/ArticleWideView/ArticleWideView";
+import ArticleWideView from "src/components/Common/ArticleWideViewCard/ArticleWideViewCard";
 import { ProfileType } from "src/utils/types/profile";
 import { ArticleType } from "src/utils/types/article";
-import KeyHighlights from "src/components/KeyHighlights/KeyHighlights";
-import AuthorProfileSkeleton from "src/components/AuthorProfileSkeleton/AuthorProfileSkeleton";
+import KeyHighlights from "src/components/AuthorProfile/KeyHighlights/KeyHighlights";
+import AuthorProfileSkeleton from "src/components/AuthorProfile/AuthorProfileSkeleton/AuthorProfileSkeleton";
 
 const AuthorProfile: React.FC = () => {
   const { username } = useParams();

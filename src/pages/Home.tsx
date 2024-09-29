@@ -1,9 +1,9 @@
-import TrendingArticles from "src/components/TrendingArticles/TrendingArticles";
+import TrendingArticles from "src/components/Home/TrendingArticles/TrendingArticles";
 import { useState, useEffect } from "react";
 import { ArticleType } from "src/utils/types/article";
 import { API } from "src/services/api";
-import LatestArticles from "src/components/LatestArticles/LatestArticles";
-import Layout from "src/components/Layout/Layout";
+import LatestArticles from "src/components/Home/LatestArticles/LatestArticles";
+import Layout from "src/components/Common/Layout/Layout";
 
 function Home() {
   // State for trending and latest articles

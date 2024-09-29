@@ -1,6 +1,6 @@
 import React from "react";
 import { CommentType } from "src/utils/types/comment";
-import CommentItem from "src/components/CommentItem/CommentItem";
+import CommentItem from "src/components/ArticleReading/CommentItem/CommentItem";
 
 interface CommentListProps {
   articleId: number;

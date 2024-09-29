@@ -1,18 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Layout from "src/components/Layout/Layout";
+import Layout from "src/components/Common/Layout/Layout";
 import { API } from "src/services/api";
 import { ArticleDetailsType } from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";
-import CommentList from "src/components/CommentList/CommentList";
+import CommentList from "src/components/ArticleReading/CommentList/CommentList";
 import { CommentType } from "src/utils/types/comment";
-import ArticleMetadata from "src/components/ArticleMetadata/ArticleMetadata";
-import ArticleContent from "src/components/ArticleContent/ArticleContent";
-import ArticleAuthorInfo from "src/components/ArticleAuthorInfo/ArticleAuthorInfo";
-import ArticleContentSkeleton from "src/components/ArticleContentSkeleton/ArticleContentSkeleton";
-import CommentListSkeleton from "src/components/CommentListSkeleton/CommentListSkeleton";
-import ArticleAuthorInfoSkeleton from "src/components/ArticleAuthorInfoSkeleton/ArticleAuthorInfoSkeleton";
+import ArticleMetadata from "src/components/ArticleReading/ArticleMetadata/ArticleMetadata";
+import ArticleContent from "src/components/ArticleReading/ArticleContent/ArticleContent";
+import ArticleAuthorInfo from "src/components/ArticleReading/ArticleAuthorInfo/ArticleAuthorInfo";
+import ArticleContentSkeleton from "src/components/ArticleReading/ArticleContentSkeleton/ArticleContentSkeleton";
+import CommentListSkeleton from "src/components/ArticleReading/CommentListSkeleton/CommentListSkeleton";
+import ArticleAuthorInfoSkeleton from "src/components/ArticleReading/ArticleAuthorInfoSkeleton/ArticleAuthorInfoSkeleton";
 
 const ArticleReading: React.FC = () => {
   const { username, slug } = useParams();

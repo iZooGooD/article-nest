@@ -1,6 +1,6 @@
 import React from "react";
-import NavigationPrimary from "src/components/NavigationPrimary/NavigationPrimary";
-import NavigationSecondary from "src/components/NavigationSecondary/NavigationSecondary";
+import NavigationPrimary from "src/components/Common/NavigationPrimary/NavigationPrimary";
+import NavigationSecondary from "src/components/Common/NavigationSecondary/NavigationSecondary";
 
 interface HeaderProps {
   isSignInMenuOpen: boolean;

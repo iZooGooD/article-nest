@@ -5,9 +5,9 @@ import {
   faCaretDown,
   faCaretUp,
 } from "@fortawesome/free-solid-svg-icons";
-import DarkModeSwitch from "src/components/DarkModeSwitch/DarkModeSwitch";
-import SignInMenu from "src/components/SignInMenu/SignInMenu";
-import SearchMenu from "src/components/SearchMenu/SearchMenu";
+import DarkModeSwitch from "src/components/Common/DarkModeSwitch/DarkModeSwitch";
+import SignInMenu from "src/components/Common/SignInMenu/SignInMenu";
+import SearchMenu from "src/components/Common/SearchMenu/SearchMenu";
 
 interface NavigationPrimaryProps {
   isSignInMenuOpen: boolean;

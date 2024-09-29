@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import logo from "src/assets/article-nest-logo.png";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MobileNavigation from "src/components/MobileNavigation/MobileNavigation";
-import LinkText from "src/components/common/LinkText/LinkText";
+import MobileNavigation from "src/components/Common/MobileNavigation/MobileNavigation";
+import LinkText from "src/components/Common/_ux/LinkText/LinkText";
 import { Link } from "react-router-dom";
 
 const NavigationSecondary: React.FC = () => {

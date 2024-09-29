@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArticleType as ArticleProps } from "src/utils/types/article";
 import { generateArticleSlug } from "src/utils/helpers/generateSlug";
 
-const ArticleView: React.FC<ArticleProps> = ({
+const ArticleViewCard: React.FC<ArticleProps> = ({
   id,
   title,
   description,
@@ -56,4 +56,4 @@ const ArticleView: React.FC<ArticleProps> = ({
   );
 };
 
-export default ArticleView;
+export default ArticleViewCard;
