@@ -46,7 +46,7 @@ const AuthorProfile: React.FC = () => {
 
   return (
     <Layout>
-      <div className="author-profile-container my-10 mx-auto max-w-6xl">
+      <div className="author-profile-container my-10 mx-auto max-w-6xl px-4">
         <div className="author-header flex flex-col md:flex-row items-center gap-6 p-6 bg-gray-100 dark:bg-black-faded rounded-lg shadow-md">
           <img
             src={authorProfile.profileUrl}

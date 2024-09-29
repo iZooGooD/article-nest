@@ -5,7 +5,7 @@ import ArticleWideViewSkeleton from "../ArticleWideViewSkeleton/ArticleWideViewS
 const AuthorProfileSkeleton: React.FC = () => {
   return (
     <Layout>
-      <div className="mx-auto container author-profile-container my-10 max-w-6xl">
+      <div className="mx-auto container author-profile-container my-10 max-w-6xl px-4">
         {/* Author Header Skeleton */}
         <div className="author-header flex flex-col md:flex-row items-center gap-6 p-6 bg-gray-100 dark:bg-black-faded rounded-lg shadow-md animate-pulse">
           <div className="w-32 h-32 rounded-full bg-gray-300 dark:bg-gray-700" />
