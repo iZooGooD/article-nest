@@ -1,4 +1,3 @@
-import React from "react";
 import { ArticleType } from "src/utils/types/article";
 import ArticleViewSkeleton from "src/components/Common/ArticleViewCardSkeleton/ArticleViewCardSkeleton";
 import ArticleViewCard from "src/components/Common/ArticleViewCard/ArticleViewCard";

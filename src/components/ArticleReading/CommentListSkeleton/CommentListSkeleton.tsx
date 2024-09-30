@@ -1,5 +1,3 @@
-import React from "react";
-
 const CommentItemSkeleton: React.FC = () => {
   return (
     <div className="comment-card flex items-center gap-4 mt-4 w-full animate-pulse">

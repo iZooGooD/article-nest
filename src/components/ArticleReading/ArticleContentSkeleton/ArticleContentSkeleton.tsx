@@ -1,5 +1,3 @@
-import React from "react";
-
 const ArticleContentSkeleton: React.FC = () => {
   return (
     <div>

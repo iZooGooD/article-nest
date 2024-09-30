@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { ArticleType as ArticleProps } from "src/utils/types/article";
 import { generateArticleSlug } from "src/utils/helpers/generateSlug";

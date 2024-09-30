@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import logo from "src/assets/article-nest-logo.png";
 import LinkText from "src/components/Common/_ux/LinkText/LinkText";

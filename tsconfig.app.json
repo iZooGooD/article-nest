@@ -11,7 +11,7 @@
     },
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "legacy",
@@ -25,5 +25,5 @@
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": false
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

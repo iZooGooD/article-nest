@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Button from "src/components/Common/_ux/Button/Button";
 interface ArticleAuthorInfoProps {

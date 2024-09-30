@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "src/components/Common/Layout/Layout";
 
 const MyProfileSkeleton: React.FC = () => {

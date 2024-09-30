@@ -1,5 +1,3 @@
-import React from "react";
-
 const ArticleWideViewCardSkeleton: React.FC = () => {
   return (
     <div className="md:flex-row flex flex-row-reverse rounded-md dark:bg-black-faded bg-white shadow-sm my-2">

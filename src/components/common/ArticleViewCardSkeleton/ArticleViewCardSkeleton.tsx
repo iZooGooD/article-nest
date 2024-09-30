@@ -1,5 +1,3 @@
-import React from "react";
-
 const ArticleViewCardSkeleton: React.FC = () => {
   return (
     <div className="flex flex-col rounded-sm dark:bg-slate-800">

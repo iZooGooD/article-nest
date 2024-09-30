@@ -1,4 +1,3 @@
-import React from "react";
 import { SectionType } from "src/utils/types/article";
 
 interface ArticleContentProps {

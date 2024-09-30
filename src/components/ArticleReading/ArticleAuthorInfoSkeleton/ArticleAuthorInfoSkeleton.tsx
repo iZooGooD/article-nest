@@ -1,5 +1,3 @@
-import React from "react";
-
 const ArticleAuthorInfoSkeleton: React.FC = () => {
   return (
     <div className="mt-8 border dark:border-black-faded rounded-lg p-3 md:p-8 shadow-lg animate-pulse">

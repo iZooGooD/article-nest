@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CommentType as CommentProps } from "src/utils/types/comment";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
