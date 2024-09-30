@@ -2,6 +2,7 @@ import { ArticleType, ArticleDetailsType } from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";
 import { CommentType } from "src/utils/types/comment";
 import { PrivateProfileType } from "src/utils/types/profile";
+import { TagType } from "src/utils/types/tags";
 
 export class API {
   static namespace: string = "/api";
@@ -86,6 +87,17 @@ export class API {
     } catch (error) {
       console.error("Error fetching my profile: ", error.message);
       return {} as PrivateProfileType;
+    }
+  }
+
+  static async getAllTags(): Promise<TagType[]> {
+    try {
+      const response = await fetch(`${this.namespace}/tags`);
+      const data = await response.json();
+      return data.tags;
+    } catch (error) {
+      console.error("Error fetching tags ", error.message);
+      return [];
     }
   }
 }

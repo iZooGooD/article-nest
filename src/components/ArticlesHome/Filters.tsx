@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../Common/_ux/Button/Button";
+import { TagType } from "src/utils/types/tags";
 
 interface FiltersProps {
   sortBy: string;
   setSortBy: React.Dispatch<React.SetStateAction<string>>;
-  tags: string[];
+  tags: TagType[];
   selectedTags: string[];
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
   author: string;
@@ -69,15 +70,15 @@ const Filters: React.FC<FiltersProps> = ({
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <button
-              key={tag}
+              key={tag.id}
               className={`px-3 py-1 border rounded-lg ${
-                selectedTags.includes(tag)
+                selectedTags.includes(tag.name)
                   ? "bg-indigo-500 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
               }`}
-              onClick={() => toggleTag(tag)}
+              onClick={() => toggleTag(tag.name)}
             >
-              {tag}
+              {tag.name}
             </button>
           ))}
         </div>

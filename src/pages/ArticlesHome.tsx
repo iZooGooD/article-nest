@@ -1,5 +1,3 @@
-// File: src/pages/ArticlesResults.tsx
-
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Layout from "src/components/Common/Layout/Layout";
@@ -10,14 +8,7 @@ import Filters from "src/components/ArticlesHome/Filters";
 import ArticlesList from "src/components/ArticlesHome/ArticleList";
 import { API } from "src/services/api";
 import { ArticleType } from "src/utils/types/article";
-
-const tagsAPI = async () => [
-  "Technology",
-  "Science",
-  "Health",
-  "Art",
-  "Politics",
-];
+import { TagType } from "src/utils/types/tags";
 
 const ArticlesHome: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,17 +18,23 @@ const ArticlesHome: React.FC = () => {
   const [sortBy, setSortBy] = useState("date");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [author, setAuthor] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<TagType[]>([]);
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    tagsAPI().then(setTags);
     const fetchTrendingArticles = async () => {
       const articlesResponse = await API.getTrendingArticles();
       setArticles(articlesResponse);
       setIsArticlesLoading(false);
     };
+
+    const fetchAllTags = async () => {
+      const tagsResponse = await API.getAllTags();
+      setTags(tagsResponse);
+    };
+
     fetchTrendingArticles();
+    fetchAllTags();
   }, []);
 
   const handleSearch = () => {

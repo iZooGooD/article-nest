@@ -27,7 +27,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
           <li className="mx-4 my-2 border-b-2 p-2 hover:border-blue-400">
             <Link
               className="text-neutral-dark  flex justify-between items-center"
-              to="/"
+              to="/articles?tags=Software+Dev"
             >
               <span>Software Dev</span>
               <FontAwesomeIcon
@@ -39,7 +39,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
           <li className="mx-4 my-2 border-b-2 p-2 hover:border-blue-400">
             <Link
               className="text-neutral-dark  flex justify-between items-center"
-              to="/"
+              to="/articles?tags=Cloud"
             >
               <span>Cloud</span>
               <FontAwesomeIcon
@@ -51,7 +51,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
           <li className="mx-4 my-2 border-b-2 p-2 hover:border-blue-400">
             <Link
               className="text-neutral-dark  flex justify-between items-center"
-              to="/"
+              to="/articles?tags=AI"
             >
               <span>AI</span>
               <FontAwesomeIcon
@@ -63,7 +63,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen }) => {
           <li className="mx-4 my-2 border-b-2 p-2 hover:border-blue-400">
             <Link
               className="text-neutral-dark  flex justify-between items-center"
-              to="/"
+              to="/articles?tags=Security"
             >
               <span> Security</span>
               <FontAwesomeIcon

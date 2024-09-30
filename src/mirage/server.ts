@@ -7,6 +7,7 @@ import {
   COMMENTS_RESPONSE,
   AUTHOR_ARTICLES_RESPONSE,
   MY_PROFILE_RESPONSE,
+  TAGS_RESPONSE,
 } from "./constants";
 
 export default function () {
@@ -64,6 +65,14 @@ export default function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(MY_PROFILE_RESPONSE);
+          }, 0);
+        });
+      });
+
+      this.get("/api/tags", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(TAGS_RESPONSE);
           }, 0);
         });
       });

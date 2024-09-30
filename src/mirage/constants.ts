@@ -487,3 +487,32 @@ export const MY_PROFILE_RESPONSE = {
     },
   },
 };
+
+export const TAGS_RESPONSE = {
+  tags: [
+    {
+      id: 1,
+      name: "AI",
+    },
+    {
+      id: 2,
+      name: "Software Dev",
+    },
+    {
+      id: 3,
+      name: "Cloud",
+    },
+    {
+      id: 4,
+      name: "Security",
+    },
+    {
+      id: 5,
+      name: "Programming",
+    },
+    {
+      id: 6,
+      name: "UX/Design",
+    },
+  ],
+};

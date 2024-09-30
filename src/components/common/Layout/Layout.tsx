@@ -5,8 +5,10 @@ import { searchSchema } from "src/utils/validations/search";
 import { z } from "zod";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function Layout({ children }: { children: React.ReactNode }) {
+  const navigate = useNavigate();
   // SignInMenu states and handlers
   const [isSignInMenuOpen, setIsSignInMenuOpen] = useState<boolean>(false);
   const handleSignInMenuToggle = () => {
@@ -31,11 +33,11 @@ function Layout({ children }: { children: React.ReactNode }) {
   };
   const [searchInputErrors, setSearchInputErrors] = useState<string[]>([]);
   const onSearchButtonClick = () => {
-    // TODO: Implement search functionality
     try {
       searchSchema.parse(searchMenuInputText);
       setSearchInputErrors([]);
       setSearchMenuInputText("");
+      navigate(`/articles?keywords=${searchMenuInputText}`);
     } catch (e) {
       if (e instanceof z.ZodError) {
         setSearchInputErrors(e.errors.map((error) => error.message));

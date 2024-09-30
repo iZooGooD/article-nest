@@ -25,10 +25,10 @@ const NavigationSecondary: React.FC = () => {
       </div>
       <ul className="hidden md:flex">
         <LinkText to="/" text="Home" />
-        <LinkText to="/" text="Software Dev" />
-        <LinkText to="/" text="Cloud" />
-        <LinkText to="/" text="AI" />
-        <LinkText to="/" text="Security" />
+        <LinkText to="/articles?tags=Software+Dev" text="Software Dev" />
+        <LinkText to="/articles?tags=Cloud" text="Cloud" />
+        <LinkText to="/articles?tags=AI" text="AI" />
+        <LinkText to="/articles?tags=Security" text="Security" />
       </ul>
       <div className="flex">
         <FontAwesomeIcon
