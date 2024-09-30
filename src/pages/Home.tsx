@@ -5,8 +5,10 @@ import { API } from "src/services/api";
 import LatestArticles from "src/components/Home/LatestArticles/LatestArticles";
 import Layout from "src/components/Common/Layout/Layout";
 import Button from "src/components/Common/_ux/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   // State for trending and latest articles
   const [trendingArticles, setTrendingArticles] = useState<ArticleType[]>([]);
   const [latestArticles, setLatestArticles] = useState<ArticleType[]>([]);
@@ -44,7 +46,9 @@ function Home() {
           <Button
             type="primary"
             size="md"
-            onClick={() => {}}
+            onClick={() => {
+              navigate("/articles");
+            }}
             text="Explore more"
           />
         </div>

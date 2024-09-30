@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "src/assets/article-nest-logo.png";
 import LinkText from "src/components/Common/_ux/LinkText/LinkText";
 
@@ -9,11 +10,13 @@ const Footer: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-between">
             <div className="flex items-center">
-              <img
-                src={logo}
-                alt="site logo"
-                className="h-[100px] outline-none"
-              />
+              <Link to={"/"}>
+                <img
+                  src={logo}
+                  alt="site logo"
+                  className="h-[100px] outline-none"
+                />
+              </Link>
               <p className="text-sm text-grey-light ml-4">
                 Copyright 2024 Article Nest. All rights reserved
               </p>
