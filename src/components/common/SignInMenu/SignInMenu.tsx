@@ -1,5 +1,4 @@
 import React from "react";
-import LinkText from "../_ux/LinkText/LinkText";
 import { Link } from "react-router-dom";
 
 interface SignInMenuProps {
