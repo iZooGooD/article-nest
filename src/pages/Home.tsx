@@ -44,9 +44,7 @@ function Home() {
           <Button
             type="primary"
             size="md"
-            onClick={() => {
-              console.log("View all articles clicked");
-            }}
+            onClick={() => {}}
             text="Explore more"
           />
         </div>

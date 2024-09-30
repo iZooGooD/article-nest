@@ -7,6 +7,8 @@ import makeServer from "./mirage/server";
 import ArticleReading from "./pages/ArticleReading.tsx";
 import AuthorProfile from "./pages/AuthorProfile.tsx";
 import MyProfile from "./pages/MyProfile.tsx";
+import UserSignupLogin from "./pages/UserSignupLogin.tsx";
+import ArticlesHome from "./pages/ArticlesHome.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
   {
     path: "myProfile",
     element: <MyProfile />,
+  },
+  {
+    path: "members",
+    element: <UserSignupLogin />,
+  },
+  {
+    path: "articles",
+    element: <ArticlesHome />,
   },
 ]);
 

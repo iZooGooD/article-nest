@@ -1,4 +1,6 @@
 import React from "react";
+import LinkText from "../_ux/LinkText/LinkText";
+import { Link } from "react-router-dom";
 
 interface SignInMenuProps {
   isSignInMenuOpen: boolean;
@@ -29,7 +31,7 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
         <h4 className="flex flex-col my-2 text-center">Sign in using</h4>
         <div className="flex justify-center">
           <button className="px-4 py-2  border flex items-center  gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700  hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-            <span className="text-sm">Login with Email</span>
+            <Link to="/members"> Sign in with Email</Link>
           </button>
         </div>
       </div>
