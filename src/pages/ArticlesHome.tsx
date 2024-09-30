@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import Layout from "src/components/Common/Layout/Layout";
-import Button from "src/components/Common/_ux/Button/Button";
+import Layout from "src/components/common/Layout/Layout";
+import Button from "src/components/common/_ux/Button/Button";
 import { faFilter, faClose } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "src/components/ArticlesHome/SearchBar";
 import Filters from "src/components/ArticlesHome/Filters";

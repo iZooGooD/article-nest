@@ -1,6 +1,6 @@
 import { ArticleType } from "src/utils/types/article";
-import ArticleViewSkeleton from "src/components/Common/ArticleViewCardSkeleton/ArticleViewCardSkeleton";
-import ArticleViewCard from "src/components/Common/ArticleViewCard/ArticleViewCard";
+import ArticleViewSkeleton from "src/components/common/ArticleViewCardSkeleton/ArticleViewCardSkeleton";
+import ArticleViewCard from "src/components/common/ArticleViewCard/ArticleViewCard";
 
 interface TrendingArticlesProps {
   articles: Array<ArticleType>;

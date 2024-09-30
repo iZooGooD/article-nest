@@ -1,5 +1,5 @@
-import Layout from "src/components/Common/Layout/Layout";
-import ArticleWideViewSkeleton from "../../Common/ArticleWideViewCardSkeleton/ArticleWideViewCardSkeleton";
+import Layout from "src/components/common/Layout/Layout";
+import ArticleWideViewSkeleton from "../../common/ArticleWideViewCardSkeleton/ArticleWideViewCardSkeleton";
 
 const AuthorProfileSkeleton: React.FC = () => {
   return (

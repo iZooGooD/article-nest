@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Layout from "src/components/Common/Layout/Layout";
+import Layout from "src/components/common/Layout/Layout";
 import { API } from "src/services/api";
 import { ArticleDetailsType } from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";

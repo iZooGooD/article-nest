@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "../components/Common/_ux/Button/Button";
-import Layout from "src/components/Common/Layout/Layout";
+import Button from "../components/common/_ux/Button/Button";
+import Layout from "src/components/common/Layout/Layout";
 import { signInSchema, SignInForm } from "src/utils/validations/signin";
 import { signUpSchema, SignUpForm } from "src/utils/validations/signup";
 

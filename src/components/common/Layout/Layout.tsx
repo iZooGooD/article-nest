@@ -1,6 +1,6 @@
-import Header from "src/components/Common/Header/Header";
+import Header from "src/components/common/Header/Header";
 import { useState } from "react";
-import Footer from "src/components/Common/Footer/Footer";
+import Footer from "src/components/common/Footer/Footer";
 import { searchSchema } from "src/utils/validations/search";
 import { z } from "zod";
 import { ToastContainer } from "react-toastify";

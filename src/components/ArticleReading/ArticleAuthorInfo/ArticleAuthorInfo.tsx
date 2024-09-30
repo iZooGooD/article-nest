@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "src/components/Common/_ux/Button/Button";
+import Button from "src/components/common/_ux/Button/Button";
 interface ArticleAuthorInfoProps {
   name: string;
   username: string;

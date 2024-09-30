@@ -1,6 +1,6 @@
 import { CommentType } from "src/utils/types/comment";
 import CommentItem from "src/components/ArticleReading/CommentItem/CommentItem";
-import Button from "src/components/Common/_ux/Button/Button";
+import Button from "src/components/common/_ux/Button/Button";
 
 interface CommentListProps {
   articleId: number;

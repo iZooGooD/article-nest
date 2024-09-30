@@ -1,4 +1,4 @@
-import Layout from "src/components/Common/Layout/Layout";
+import Layout from "src/components/common/Layout/Layout";
 
 const MyProfileSkeleton: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "src/assets/article-nest-logo.png";
-import LinkText from "src/components/Common/_ux/LinkText/LinkText";
+import LinkText from "src/components/common/_ux/LinkText/LinkText";
 
 const Footer: React.FC = () => {
   return (

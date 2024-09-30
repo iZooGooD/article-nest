@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { PrivateProfileType } from "src/utils/types/profile";
 import { API } from "src/services/api";
-import Layout from "src/components/Common/Layout/Layout";
+import Layout from "src/components/common/Layout/Layout";
 import MyProfileSkeleton from "src/components/MyProfile/MyProfileSkeleton";
 import { toast } from "react-toastify";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";

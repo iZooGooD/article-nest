@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { ArticleType } from "src/utils/types/article";
 import { API } from "src/services/api";
 import LatestArticles from "src/components/Home/LatestArticles/LatestArticles";
-import Layout from "src/components/Common/Layout/Layout";
-import Button from "src/components/Common/_ux/Button/Button";
+import Layout from "src/components/common/Layout/Layout";
+import Button from "src/components/common/_ux/Button/Button";
 import { useNavigate } from "react-router-dom";
 
 function Home() {

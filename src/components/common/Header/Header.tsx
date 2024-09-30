@@ -1,5 +1,5 @@
-import NavigationPrimary from "src/components/Common/NavigationPrimary/NavigationPrimary";
-import NavigationSecondary from "src/components/Common/NavigationSecondary/NavigationSecondary";
+import NavigationPrimary from "src/components/common/NavigationPrimary/NavigationPrimary";
+import NavigationSecondary from "src/components/common/NavigationSecondary/NavigationSecondary";
 
 interface HeaderProps {
   isSignInMenuOpen: boolean;

@@ -1,5 +1,5 @@
-import ArticleWideViewCard from "src/components/Common/ArticleWideViewCard/ArticleWideViewCard";
-import ArticleWideViewCardSkeleton from "src/components/Common/ArticleWideViewCardSkeleton/ArticleWideViewCardSkeleton";
+import ArticleWideViewCard from "src/components/common/ArticleWideViewCard/ArticleWideViewCard";
+import ArticleWideViewCardSkeleton from "src/components/common/ArticleWideViewCardSkeleton/ArticleWideViewCardSkeleton";
 import { ArticleType } from "src/utils/types/article";
 
 interface ArticlesListProps {
