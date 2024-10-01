@@ -9,6 +9,7 @@ import AuthorProfile from "./pages/AuthorProfile.tsx";
 import MyProfile from "./pages/MyProfile.tsx";
 import UserSignupLogin from "./pages/UserSignupLogin.tsx";
 import ArticlesHome from "./pages/ArticlesHome.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "articles",
     element: <ArticlesHome />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

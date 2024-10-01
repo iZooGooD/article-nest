@@ -9,6 +9,8 @@ import ArticlesList from "src/components/ArticlesHome/ArticleList";
 import { API } from "src/services/api";
 import { ArticleType } from "src/utils/types/article";
 import { TagType } from "src/utils/types/tags";
+import Pagination from "src/components/common/Pagination/Pagination"; // Import the pagination component
+import "src/components/common/Pagination/Pagination.scss";
 
 const ArticlesHome: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,11 +22,14 @@ const ArticlesHome: React.FC = () => {
   const [author, setAuthor] = useState("");
   const [tags, setTags] = useState<TagType[]>([]);
   const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
     const fetchTrendingArticles = async () => {
       const articlesResponse = await API.getTrendingArticles();
       setArticles(articlesResponse);
+      setTotalPages(30); // Assume this is returned by the API
       setIsArticlesLoading(false);
     };
 
@@ -35,7 +40,7 @@ const ArticlesHome: React.FC = () => {
 
     fetchTrendingArticles();
     fetchAllTags();
-  }, []);
+  }, [currentPage]);
 
   const handleSearch = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,6 +50,7 @@ const ArticlesHome: React.FC = () => {
     if (sortBy) params.sortBy = sortBy;
 
     setSearchParams(params);
+    setCurrentPage(1); // Reset to first page on new search
   };
 
   return (
@@ -87,6 +93,15 @@ const ArticlesHome: React.FC = () => {
           </div>
 
           <ArticlesList articles={articles} isLoading={isArticlesLoading} />
+
+          {totalPages > 1 && (
+            <div className="flex justify-center mt-8">
+              <Pagination
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          )}
         </div>
       </div>
     </Layout>

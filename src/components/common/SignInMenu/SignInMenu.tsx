@@ -28,9 +28,13 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
       <div className="email-sign-in p-2 md:p-4 bg-white flex-1 rounded-md">
         <h4 className="flex flex-col my-2 text-center">Sign in using</h4>
         <div className="flex justify-center">
-          <button className="px-4 py-2  border flex items-center  gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700  hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-            <Link to="/members"> Sign in with Email</Link>
-          </button>
+          <Link
+            className="px-4 py-2  border flex items-center  gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700  hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+            to="/members"
+          >
+            {" "}
+            Sign in with Email
+          </Link>
         </div>
       </div>
     </div>

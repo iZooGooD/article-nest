@@ -20,7 +20,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={keywords}
         onChange={(e) => setKeywords(e.target.value)}
       />
-      <Button text="Search" type="primary" size="s" onClick={onSearch} />
+      <Button
+        text="Search"
+        type="primary"
+        size="s"
+        onClick={onSearch}
+        rounded={false}
+      />
     </div>
   );
 };

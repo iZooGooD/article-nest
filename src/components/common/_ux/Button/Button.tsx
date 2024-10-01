@@ -6,13 +6,23 @@ interface ButtonProps {
   text: string;
   type: "primary" | "secondary" | "danger" | "success";
   icon?: IconDefinition;
+  rounded?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ size, icon, text, type, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+  size,
+  icon,
+  text,
+  disabled,
+  type,
+  rounded = true,
+  onClick,
+}) => {
   const colorClassMap = {
-    primary: "bg-brand text-white",
-    secondary: "bg-gray-500 text-white",
+    primary: "bg-brand text-white hover:bg-brand-dark",
+    secondary: "bg-gray-500 text-white hover:bg-gray-700",
     danger: "bg-red-500 text-white",
     success: "bg-green-500 text-white",
   };
@@ -24,11 +34,13 @@ const Button: React.FC<ButtonProps> = ({ size, icon, text, type, onClick }) => {
     xlg: "py-5 px-10",
     full: "py-3 px-6 w-full",
   };
-  const defaultClass = "rounded-md";
+
+  const roundedClasses = `${rounded ? "rounded-md" : ""} `;
   return (
     <button
-      className={`${colorClassMap[type]} ${sizeClassMap[size]} ${defaultClass} hover:bg-brand-dark transition duration-300 shadow-md`}
+      className={`${colorClassMap[type]} ${sizeClassMap[size]} ${roundedClasses} transition duration-300 shadow-md`}
       onClick={onClick}
+      disabled={disabled}
     >
       {icon && <FontAwesomeIcon icon={icon} className="mr-2" />}
       {text}

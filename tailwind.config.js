@@ -18,7 +18,8 @@ export default {
         'neutral-dark': '#130F25',
         'neutral-light': '#F4F7FA',
         'black-faded': '#222222',
-        'brand': '#FF1675' 
+        'brand': '#FF1675',
+        'brand-dark': '#b31355',
       },
       fontFamily: {
         sans: ['Jost', 'sans-serif'],
