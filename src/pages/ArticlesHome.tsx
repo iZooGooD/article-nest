@@ -29,7 +29,7 @@ const ArticlesHome: React.FC = () => {
     const fetchTrendingArticles = async () => {
       const articlesResponse = await API.getTrendingArticles();
       setArticles(articlesResponse);
-      setTotalPages(30); // Assume this is returned by the API
+      setTotalPages(5); // Assume this is returned by the API
       setIsArticlesLoading(false);
     };
 
