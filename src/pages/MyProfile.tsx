@@ -133,7 +133,12 @@ const ProfileHeader: React.FC<{ profile: PrivateProfileType }> = ({
       <h2 className="text-3xl font-bold text-neutral-800 dark:text-gray-200">
         {profile.firstName} {profile.lastName}
       </h2>
-      <Button size="s" text="Change Profile Picture" type="secondary" />
+      <Button
+        size="xs"
+        text="Change Profile Picture"
+        type="secondary"
+        customClasses="my-2"
+      />
     </div>
   </div>
 );

@@ -8,6 +8,7 @@ import {
   AUTHOR_ARTICLES_RESPONSE,
   MY_PROFILE_RESPONSE,
   TAGS_RESPONSE,
+  USER_ARTICLES_STATS,
 } from "./constants";
 
 export default function () {
@@ -73,6 +74,14 @@ export default function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(TAGS_RESPONSE);
+          }, 0);
+        });
+      });
+
+      this.get("/api/user/:userId/articles-stats", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(USER_ARTICLES_STATS);
           }, 0);
         });
       });

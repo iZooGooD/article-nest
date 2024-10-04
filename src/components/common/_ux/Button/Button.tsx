@@ -9,6 +9,7 @@ interface ButtonProps {
   rounded?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  customClasses?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   type,
   rounded = true,
   onClick,
+  customClasses,
 }) => {
   const colorClassMap = {
     primary: "bg-brand text-white hover:bg-brand-dark",
@@ -38,7 +40,11 @@ const Button: React.FC<ButtonProps> = ({
   const roundedClasses = `${rounded ? "rounded-md" : ""} `;
   return (
     <button
-      className={`${colorClassMap[type]} ${sizeClassMap[size]} ${roundedClasses} transition duration-300 shadow-md`}
+      className={`${colorClassMap[type]} ${
+        sizeClassMap[size]
+      } ${roundedClasses} transition duration-300 shadow-md ${
+        customClasses ? customClasses : ""
+      }`}
       onClick={onClick}
       disabled={disabled}
     >

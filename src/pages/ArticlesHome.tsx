@@ -9,7 +9,7 @@ import ArticlesList from "src/components/ArticlesHome/ArticleList";
 import { API } from "src/services/api";
 import { ArticleType } from "src/utils/types/article";
 import { TagType } from "src/utils/types/tags";
-import Pagination from "src/components/common/Pagination/Pagination"; // Import the pagination component
+import Pagination from "src/components/common/Pagination/Pagination";
 import "src/components/common/Pagination/Pagination.scss";
 
 const ArticlesHome: React.FC = () => {
@@ -25,8 +25,10 @@ const ArticlesHome: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
 
+  // TODO: Remove unnecessary fetch for tags on each page change
   useEffect(() => {
     const fetchTrendingArticles = async () => {
+      setIsArticlesLoading(true);
       const articlesResponse = await API.getTrendingArticles();
       setArticles(articlesResponse);
       setTotalPages(5); // Assume this is returned by the API

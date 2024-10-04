@@ -516,3 +516,24 @@ export const TAGS_RESPONSE = {
     },
   ],
 };
+
+export const USER_ARTICLES_STATS = {
+  articles: [
+    {
+      id: 1,
+      title: "AI Trends 2024",
+      publishedDate: "2024-01-01",
+      views: 150,
+      comments: 10,
+      isPrivate: false,
+    },
+    {
+      id: 2,
+      title: "Quantum Computing Basics",
+      publishedDate: "2023-12-15",
+      views: 300,
+      comments: 24,
+      isPrivate: true,
+    },
+  ],
+};

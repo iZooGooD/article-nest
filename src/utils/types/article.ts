@@ -52,3 +52,12 @@ export interface ArticleMetadataType {
   comments: number;
   shares: number;
 }
+
+export interface ArticleStatsType {
+  id: number;
+  title: string;
+  publishedDate: string;
+  views: number;
+  comments: number;
+  isPrivate: boolean;
+}

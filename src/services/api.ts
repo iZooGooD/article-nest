@@ -1,4 +1,8 @@
-import { ArticleType, ArticleDetailsType } from "src/utils/types/article";
+import {
+  ArticleType,
+  ArticleDetailsType,
+  ArticleStatsType,
+} from "src/utils/types/article";
 import { ProfileType } from "src/utils/types/profile";
 import { CommentType } from "src/utils/types/comment";
 import { PrivateProfileType } from "src/utils/types/profile";
@@ -95,6 +99,21 @@ export class API {
       const response = await fetch(`${this.namespace}/tags`);
       const data = await response.json();
       return data.tags;
+    } catch (error) {
+      console.error("Error fetching tags ", error.message);
+      return [];
+    }
+  }
+
+  static async getUserDashboardArticles(
+    userId: number
+  ): Promise<ArticleStatsType[]> {
+    try {
+      const response = await fetch(
+        `${this.namespace}/user/${userId}/articles-stats`
+      );
+      const data = await response.json();
+      return data.articles;
     } catch (error) {
       console.error("Error fetching tags ", error.message);
       return [];
