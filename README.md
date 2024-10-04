@@ -35,7 +35,7 @@ ArticleNest is designed to provide a space for tech writers and readers to come 
 1. Clone the repository:
 
    ```bash
-   git clone []
+   git clone https://github.com/iZooGooD/article-nest.git
    ```
 
 2. Install dependencies:
