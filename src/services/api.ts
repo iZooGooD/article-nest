@@ -13,7 +13,7 @@ export class API {
 
   static async getTrendingArticles(): Promise<ArticleType[]> {
     try {
-      const response = await fetch(`${this.namespace}/trending-articles`);
+      const response = await fetch(`${API.namespace}/trending-articles`);
       const data = await response.json();
       return data.trendingArticles;
     } catch (error) {
@@ -24,7 +24,7 @@ export class API {
 
   static async getLatestArticles(): Promise<ArticleType[]> {
     try {
-      const response = await fetch(`${this.namespace}/latest-articles`);
+      const response = await fetch(`${API.namespace}/latest-articles`);
       const data = await response.json();
       return data.latestArticles;
     } catch (error) {
@@ -35,7 +35,7 @@ export class API {
 
   static async getArticleDetails(id: string): Promise<ArticleDetailsType> {
     try {
-      const response = await fetch(`${this.namespace}/article/${id}`);
+      const response = await fetch(`${API.namespace}/article/${id}`);
       const data = await response.json();
       return data.article;
     } catch (error) {
@@ -48,7 +48,7 @@ export class API {
     username: string
   ): Promise<ProfileType> {
     try {
-      const response = await fetch(`${this.namespace}/profile/${username}`);
+      const response = await fetch(`${API.namespace}/profile/${username}`);
       const data = await response.json();
       return data.profile;
     } catch (error) {
@@ -62,7 +62,7 @@ export class API {
   ): Promise<CommentType[]> {
     try {
       const response = await fetch(
-        `${this.namespace}/article/${articleId}/comments`
+        `${API.namespace}/article/${articleId}/comments`
       );
       const data = await response.json();
       return data.comments;
@@ -74,7 +74,7 @@ export class API {
 
   static async getArticlesByAuthor(username: string): Promise<ArticleType[]> {
     try {
-      const response = await fetch(`${this.namespace}/${username}/articles`);
+      const response = await fetch(`${API.namespace}/${username}/articles`);
       const data = await response.json();
       return data.articles;
     } catch (error) {
@@ -85,7 +85,7 @@ export class API {
 
   static async getMyProfile(): Promise<PrivateProfileType> {
     try {
-      const response = await fetch(`${this.namespace}/my-profile`);
+      const response = await fetch(`${API.namespace}/my-profile`);
       const data = await response.json();
       return data.profile;
     } catch (error) {
@@ -96,7 +96,7 @@ export class API {
 
   static async getAllTags(): Promise<TagType[]> {
     try {
-      const response = await fetch(`${this.namespace}/tags`);
+      const response = await fetch(`${API.namespace}/tags`);
       const data = await response.json();
       return data.tags;
     } catch (error) {
@@ -110,7 +110,7 @@ export class API {
   ): Promise<ArticleStatsType[]> {
     try {
       const response = await fetch(
-        `${this.namespace}/user/${userId}/articles-stats`
+        `${API.namespace}/user/${userId}/articles-stats`
       );
       const data = await response.json();
       return data.articles;

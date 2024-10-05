@@ -1,15 +1,16 @@
 import { ArticleType } from "src/utils/types/article";
 import ArticleViewSkeleton from "src/components/common/ArticleViewCardSkeleton/ArticleViewCardSkeleton";
 import ArticleViewCard from "src/components/common/ArticleViewCard/ArticleViewCard";
+import type { QueryStatus } from "react-query";
 
 interface TrendingArticlesProps {
   articles: Array<ArticleType>;
-  isLoading: boolean;
+  status: QueryStatus;
 }
 
 const TrendingArticles: React.FC<TrendingArticlesProps> = ({
   articles,
-  isLoading,
+  status,
 }) => {
   return (
     <div className="md:container mx-2 md:mx-auto mt-14 dark:text-white text-black">
@@ -21,13 +22,14 @@ const TrendingArticles: React.FC<TrendingArticlesProps> = ({
         <div className="flex flex-col border-t-2 flex-1  border-gray-500"></div>
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-        {isLoading
-          ? Array.from({ length: 6 }).map((_, index) => (
-              <ArticleViewSkeleton key={index} />
-            ))
-          : articles.map((article) => (
-              <ArticleViewCard key={article.id} {...article} />
-            ))}
+        {status === "loading" &&
+          Array.from({ length: 6 }).map((_, index) => (
+            <ArticleViewSkeleton key={index} />
+          ))}
+        {status === "success" &&
+          articles.map((article) => (
+            <ArticleViewCard key={article.id} {...article} />
+          ))}
       </section>
     </div>
   );

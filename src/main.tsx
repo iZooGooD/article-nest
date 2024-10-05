@@ -12,6 +12,8 @@ import ArticlesHome from "./pages/ArticlesHome.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import MyDashboard from "./pages/MyDashboard.tsx";
 import { Editor } from "./pages/Editor.tsx";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const router = createBrowserRouter([
   {
@@ -52,11 +54,16 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 // TODO: remove this line once frontend is ready and replace with env check
 makeServer();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </StrictMode>
 );
