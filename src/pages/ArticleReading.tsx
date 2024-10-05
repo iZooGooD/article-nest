@@ -1,69 +1,55 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Layout from "src/components/common/Layout/Layout";
 import { API } from "src/services/api";
-import { ArticleDetailsType } from "src/utils/types/article";
-import { ProfileType } from "src/utils/types/profile";
 import CommentList from "src/components/ArticleReading/CommentList/CommentList";
-import { CommentType } from "src/utils/types/comment";
 import ArticleMetadata from "src/components/ArticleReading/ArticleMetadata/ArticleMetadata";
 import ArticleContent from "src/components/ArticleReading/ArticleContent/ArticleContent";
 import ArticleAuthorInfo from "src/components/ArticleReading/ArticleAuthorInfo/ArticleAuthorInfo";
 import ArticleContentSkeleton from "src/components/ArticleReading/ArticleContentSkeleton/ArticleContentSkeleton";
 import CommentListSkeleton from "src/components/ArticleReading/CommentListSkeleton/CommentListSkeleton";
 import ArticleAuthorInfoSkeleton from "src/components/ArticleReading/ArticleAuthorInfoSkeleton/ArticleAuthorInfoSkeleton";
+import { useQuery } from "react-query";
 
 const ArticleReading: React.FC = () => {
   const { username, slug } = useParams();
-  const [article, setArticle] = useState<ArticleDetailsType>();
-  const [isArticleLoading, setIsArticleLoading] = useState<boolean>(true);
-  const [authorProfile, setAuthorProfile] = useState<ProfileType>();
-  const [isAuthorProfileLoading, setIsAuthorProfileLoading] =
-    useState<boolean>(true);
-  const [articleComments, setArticleComments] = useState<CommentType[]>([]);
-  const [isArticleCommentsLoading, setIsArticleCommentsLoading] =
-    useState<boolean>(true);
 
-  const fetchComments = async (articleId: number) => {
-    // TODO: Add pagination support using start and limit query params
-    const comments = await API.getCommentsForArticle(articleId);
-    setArticleComments([...articleComments, ...comments]);
-    setIsArticleCommentsLoading(false);
-  };
+  const { data: article, isLoading: isArticleLoading } = useQuery(
+    ["article"],
+    () =>
+      slug ? API.getArticleDetails(slug) : Promise.reject("No slug available"),
+    {
+      enabled: !!slug,
+    }
+  );
+
+  const { data: authorProfile, isLoading: isAuthorProfileLoading } = useQuery(
+    "authorProfile",
+    () =>
+      username
+        ? API.getProfileDetailsUsingUsername(username ?? "")
+        : Promise.reject("No username available"),
+    {
+      enabled: !!username,
+    }
+  );
+
+  const { data: articleComments, isLoading: isArticleCommentsLoading } =
+    useQuery(
+      "articleComments",
+      () =>
+        article?.id
+          ? API.getCommentsForArticle(article.id)
+          : Promise.reject("No article id is available"),
+      {
+        enabled: !!article,
+      }
+    );
 
   const isArticleContentLoaded = article && !isArticleLoading;
 
   const isArticleAuthorInfoLoaded = authorProfile && !isAuthorProfileLoading;
 
   const isArticleCommentsLoaded = articleComments && !isArticleCommentsLoading;
-
-  useEffect(() => {
-    const fetchArticle = async (slug: string) => {
-      const articleDetails = await API.getArticleDetails(slug);
-      setArticle(articleDetails);
-      setIsArticleLoading(false);
-    };
-
-    const fetchAuthorProfileDetails = async (username: string) => {
-      const profile = await API.getProfileDetailsUsingUsername(username);
-      setAuthorProfile(profile);
-      setIsAuthorProfileLoading(false);
-    };
-
-    if (slug) {
-      fetchArticle(slug);
-    }
-    if (username) {
-      fetchAuthorProfileDetails(username);
-    }
-  }, [slug, username]);
-
-  useEffect(() => {
-    if (article) {
-      fetchComments(article.id);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [article]);
 
   return (
     <Layout>
@@ -88,9 +74,7 @@ const ArticleReading: React.FC = () => {
                 shares={article.metadata.shares}
               />
               <CommentList
-                articleId={article?.id}
                 comments={articleComments}
-                fetchComments={fetchComments}
                 totalComments={article.metadata.comments}
               />
             </div>

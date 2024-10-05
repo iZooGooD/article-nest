@@ -22,6 +22,7 @@ The frontend is built using modern tools to ensure a responsive and scalable use
 - [TypeScript](https://www.typescriptlang.org/): For a strongly typed, maintainable codebase.
 - [Zod](https://github.com/colinhacks/zod): For schema validation and type-safe data handling.
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for fast and easy styling.
+- [React Query](https://tanstack.com/query/v3): Powerful asynchronous state management for TS/JS.
 
 **Backend**:  
 The backend will be developed using [NestJS](https://nestjs.com/), a progressive Node.js framework for building efficient and scalable server-side applications.

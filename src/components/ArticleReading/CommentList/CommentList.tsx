@@ -3,17 +3,13 @@ import CommentItem from "src/components/ArticleReading/CommentItem/CommentItem";
 import Button from "src/components/common/_ux/Button/Button";
 
 interface CommentListProps {
-  articleId: number;
   totalComments: number;
   comments: Array<CommentType>;
-  fetchComments: (articleId: number) => void;
 }
 
 const CommentList: React.FC<CommentListProps> = ({
-  articleId,
   totalComments,
   comments,
-  fetchComments,
 }) => {
   const renderCommentItems = () =>
     comments.map((comment) => (
@@ -43,12 +39,7 @@ const CommentList: React.FC<CommentListProps> = ({
 
   const renderLoadMoreButton = () => (
     <div className="comments-load-more my-4 w-full flex md:justify-end">
-      <Button
-        text="Load more comments"
-        type="secondary"
-        size="s"
-        onClick={() => fetchComments(articleId)}
-      />
+      <Button text="Load more comments" type="secondary" size="s" />
     </div>
   );
 

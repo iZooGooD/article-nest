@@ -12,6 +12,7 @@ import "react-quill/dist/quill.snow.css";
 import Layout from "src/components/common/Layout/Layout";
 import { SectionType } from "src/utils/types/article";
 import { API } from "src/services/api";
+import { useQuery } from "react-query";
 
 export const Editor: React.FC = () => {
   const [title, setTitle] = useState<string>("");
@@ -19,6 +20,20 @@ export const Editor: React.FC = () => {
   const [searchParams] = useSearchParams();
   const articleid: string | null = searchParams.get("articleid");
   const mode: string | null = searchParams.get("mode");
+
+  useQuery(
+    "articleEdit",
+    () =>
+      articleid
+        ? API.getArticleDetails(articleid)
+        : Promise.reject("No article id found to edit"),
+    {
+      onSuccess: (article) => {
+        setSections(article.description.sections);
+        setTitle(article.title);
+      },
+    }
+  );
 
   useEffect(() => {
     const fetchArticleDetails = async (articleid: string) => {

@@ -25,6 +25,7 @@ const ArticlesHome: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
 
+  // TODO: Migrate to use react-query
   // TODO: Remove unnecessary fetch for tags on each page change
   useEffect(() => {
     const fetchTrendingArticles = async () => {

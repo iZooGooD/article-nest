@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -19,9 +19,9 @@ import { toast } from "react-toastify";
 import { profileInputSchema } from "src/utils/validations/profileform";
 import { z } from "zod";
 import Button from "src/components/common/_ux/Button/Button";
+import { useQuery } from "react-query";
 
 const MyProfile: React.FC = () => {
-  const [profile, setProfile] = useState<PrivateProfileType | null>(null);
   const [editing, setEditing] = useState(false);
   const [activeTab, setActiveTab] = useState("personal");
 
@@ -36,18 +36,18 @@ const MyProfile: React.FC = () => {
 
   const [inputErrors, setInputErrors] = useState<string[]>([]);
 
-  const fetchProfile = async () => {
-    const profileData = await API.getMyProfile();
-    setProfile(profileData);
-    setFormData({
-      firstName: profileData.firstName,
-      lastName: profileData.lastName,
-      email: profileData.email,
-      isPrivate: profileData.preferences.isPrivate,
-      articleUpdates: profileData.preferences.articleUpdatesNotifications,
-      emailNotifications: profileData.preferences.emailNotifications,
-    });
-  };
+  const { data: profile, isLoading } = useQuery("myProfile", API.getMyProfile, {
+    onSuccess: (profile) => {
+      setFormData({
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        email: profile.email,
+        isPrivate: profile.preferences.isPrivate,
+        articleUpdates: profile.preferences.articleUpdatesNotifications,
+        emailNotifications: profile.preferences.emailNotifications,
+      });
+    },
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -83,47 +83,45 @@ const MyProfile: React.FC = () => {
     setEditing(false);
   };
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
+  if (isLoading) return <MyProfileSkeleton />;
 
-  if (!profile) return <MyProfileSkeleton />;
+  if (!isLoading && profile) {
+    return (
+      <Layout>
+        <div className="min-h-[75vh] px-4">
+          <div className="max-w-5xl mx-auto my-10 p-6 bg-gray-100 dark:bg-black-faded rounded-lg shadow-lg">
+            <ProfileHeader profile={profile} />
 
-  return (
-    <Layout>
-      <div className="min-h-[75vh] px-4">
-        <div className="max-w-5xl mx-auto my-10 p-6 bg-gray-100 dark:bg-black-faded rounded-lg shadow-lg">
-          <ProfileHeader profile={profile} />
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-
-          {activeTab === "personal" ? (
-            <PersonalInfo
-              editing={editing}
-              formData={formData}
-              handleInputChange={handleInputChange}
-              setEditing={setEditing}
-              handleSave={handleSave}
-              inputErrors={inputErrors}
+            {activeTab === "personal" ? (
+              <PersonalInfo
+                editing={editing}
+                formData={formData}
+                handleInputChange={handleInputChange}
+                setEditing={setEditing}
+                handleSave={handleSave}
+                inputErrors={inputErrors}
+              />
+            ) : (
+              <Preferences
+                formData={formData}
+                handleTogglePreference={handleTogglePreference}
+              />
+            )}
+          </div>
+          <div className="max-w-5xl mx-auto flex justify-center">
+            <Button
+              text="Navigate to your articles"
+              size="s"
+              type="secondary"
+              redirectTo="/me/articles"
             />
-          ) : (
-            <Preferences
-              formData={formData}
-              handleTogglePreference={handleTogglePreference}
-            />
-          )}
+          </div>
         </div>
-        <div className="max-w-5xl mx-auto flex justify-center">
-          <Button
-            text="Navigate to your articles"
-            size="s"
-            type="secondary"
-            redirectTo="/me/articles"
-          />
-        </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
+  }
 };
 
 const ProfileHeader: React.FC<{ profile: PrivateProfileType }> = ({

@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import Button from "src/components/common/_ux/Button/Button";
 import Layout from "src/components/common/Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import DashboardArticles from "src/components/MyDashboard/DashboardArticles";
 import { API } from "src/services/api";
-import { ArticleStatsType } from "src/utils/types/article";
+import { useQuery } from "react-query";
 
 const MyDashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [articles, setArticles] = useState<ArticleStatsType[]>([]);
   // TODO: user to loggedin users name later when redux/context api is ready
   const [user] = useState<string>("John doe");
 
+  const { data: articles } = useQuery(["articlesStats"], () =>
+    API.getUserDashboardArticles(1)
+  );
+
+  // TODO: Implement delete call
   const handleDeleteArticle = (id: number) => {
-    setArticles(articles.filter((article) => article.id !== id));
+    console.log("handleDeleteArticle", id);
   };
 
   const handleToggleVisibility = (id: number) => {
-    setArticles(
-      articles.map((article) =>
-        article.id === id
-          ? { ...article, isPrivate: !article.isPrivate }
-          : article
-      )
-    );
+    console.log("handleToggleVisibility", id);
   };
 
   const handleEditArticle = (id: number) => {
@@ -35,15 +33,6 @@ const MyDashboard: React.FC = () => {
     navigate(`/articleEditor?mode=create`);
   };
 
-  useEffect(() => {
-    const fetchUserDashboardArticles = async () => {
-      // TODO: replace hardcoded `1` to loggedin users id later when redux/context api is ready
-      const articleResponse = await API.getUserDashboardArticles(1);
-      setArticles(articleResponse);
-    };
-    fetchUserDashboardArticles();
-  }, []);
-
   return (
     <Layout>
       <div className="container mx-auto p-8  min-h-screen">
@@ -51,7 +40,7 @@ const MyDashboard: React.FC = () => {
           Welcome back, {user}!
         </div>
 
-        {articles.length > 0 ? (
+        {articles && articles.length > 0 ? (
           <DashboardArticles
             articles={articles}
             onDelete={handleDeleteArticle}

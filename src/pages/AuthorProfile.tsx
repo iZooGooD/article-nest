@@ -1,38 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Layout from "src/components/common/Layout/Layout";
 import { useParams } from "react-router-dom";
 import { API } from "src/services/api";
 import ArticleWideView from "src/components/common/ArticleWideViewCard/ArticleWideViewCard";
-import { ProfileType } from "src/utils/types/profile";
-import { ArticleType } from "src/utils/types/article";
 import KeyHighlights from "src/components/AuthorProfile/KeyHighlights/KeyHighlights";
 import AuthorProfileSkeleton from "src/components/AuthorProfile/AuthorProfileSkeleton/AuthorProfileSkeleton";
+import { useQuery } from "react-query";
 
 const AuthorProfile: React.FC = () => {
   const { username } = useParams();
-  const [authorProfile, setAuthorProfile] = useState<ProfileType | null>(null);
-  const [authorArticles, setAuthorArticles] = useState<ArticleType[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      setIsLoading(true);
-      try {
-        const profile = await API.getProfileDetailsUsingUsername(username!);
-        const articles = await API.getArticlesByAuthor(username!);
-        setAuthorProfile(profile);
-        setAuthorArticles(articles);
-      } catch (error) {
-        console.error("Error fetching author data", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const { data: authorProfile, isLoading: isAuthorProfileLoading } = useQuery(
+    ["authorProfile"],
+    () => API.getProfileDetailsUsingUsername(username!),
+    {
+      enabled: !!username,
+    }
+  );
 
-    fetchProfileData();
-  }, [username]);
+  const { data: authorArticles, isLoading: isAuthorArticlesLoading } = useQuery(
+    ["authorArticles"],
+    () => API.getArticlesByAuthor(username!),
+    {
+      enabled: !!username,
+    }
+  );
 
-  if (isLoading) {
+  if (isAuthorProfileLoading || isAuthorArticlesLoading) {
     return <AuthorProfileSkeleton />;
   }
 
@@ -86,9 +80,9 @@ const AuthorProfile: React.FC = () => {
 
         <div className="author-articles mt-10 min-h-72">
           <h3 className="text-2xl font-bold mb-6 text-neutral-800 dark:text-gray-200">
-            Articles by {authorProfile.name} ({authorArticles.length})
+            Articles by {authorProfile.name} ({authorArticles?.length})
           </h3>
-          {authorArticles.length > 0 ? (
+          {authorArticles && authorArticles.length > 0 ? (
             <div className="grid grid-cols-1 mt-8 gap-y-4">
               {authorArticles.map((article) => (
                 <ArticleWideView key={article.id} {...article} />
