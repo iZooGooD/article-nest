@@ -7,6 +7,7 @@ import { ProfileType } from "src/utils/types/profile";
 import { ArticleType } from "src/utils/types/article";
 import KeyHighlights from "src/components/AuthorProfile/KeyHighlights/KeyHighlights";
 import AuthorProfileSkeleton from "src/components/AuthorProfile/AuthorProfileSkeleton/AuthorProfileSkeleton";
+import { useNavigate } from "react-router-dom";
 
 const AuthorProfile: React.FC = () => {
   const { username } = useParams();

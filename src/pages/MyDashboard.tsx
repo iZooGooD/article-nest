@@ -28,11 +28,11 @@ const MyDashboard: React.FC = () => {
   };
 
   const handleEditArticle = (id: number) => {
-    navigate(`/editor?mode=edit&articleid=${id}`);
+    navigate(`/articleEditor?mode=edit&articleid=${id}`);
   };
 
   const handleCreateNewArticle = () => {
-    navigate(`/editor?mode=create`);
+    navigate(`/articleEditor?mode=create`);
   };
 
   useEffect(() => {

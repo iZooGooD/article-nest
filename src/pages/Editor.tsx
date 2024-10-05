@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
+  faArrowCircleLeft,
   faCheck,
   faMinusCircle,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Button from "src/components/common/_ux/Button/Button";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -65,9 +66,19 @@ export const Editor: React.FC = () => {
   return (
     <Layout>
       <div className="container mx-auto p-8">
-        <h2 className="text-2xl md:text-3xl font-medium dark:text-white text-black">
-          {mode === "create" ? "Create New Article" : "Edit Article"}
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl md:text-3xl font-medium dark:text-white text-black">
+            {mode === "create" ? "Create New Article" : "Edit Article"}
+          </h2>
+          <Button
+            text="Back to my articles"
+            icon={faArrowCircleLeft}
+            size="xs"
+            type="secondary"
+            redirectTo="/me/articles"
+          />
+        </div>
+
         <div className="space-y-8 my-6">
           <div>
             <label className="font-medium dark:text-white text-black mb-2">

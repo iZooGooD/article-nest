@@ -1,5 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
   size: "xs" | "s" | "md" | "lg" | "xlg" | "full";
@@ -8,6 +9,7 @@ interface ButtonProps {
   icon?: IconDefinition;
   rounded?: boolean;
   disabled?: boolean;
+  redirectTo?: string;
   onClick?: () => void;
   customClasses?: string;
 }
@@ -21,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   rounded = true,
   onClick,
   customClasses,
+  redirectTo,
 }) => {
   const colorClassMap = {
     primary: "bg-brand text-white hover:bg-brand-dark",
@@ -37,6 +40,15 @@ const Button: React.FC<ButtonProps> = ({
     full: "py-3 px-6 w-full",
   };
 
+  const navigate = useNavigate();
+
+  const onButtonClick = () => {
+    if (redirectTo) {
+      navigate(redirectTo);
+    }
+    onClick?.();
+  };
+
   const roundedClasses = `${rounded ? "rounded-md" : ""} `;
   return (
     <button
@@ -45,7 +57,7 @@ const Button: React.FC<ButtonProps> = ({
       } ${roundedClasses} transition duration-300 shadow-md ${
         customClasses ? customClasses : ""
       }`}
-      onClick={onClick}
+      onClick={onButtonClick}
       disabled={disabled}
     >
       {icon && <FontAwesomeIcon icon={icon} className="mr-2" />}

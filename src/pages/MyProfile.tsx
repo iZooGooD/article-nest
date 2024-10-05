@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// File: src/pages/MyProfile.tsx
-
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -114,6 +112,14 @@ const MyProfile: React.FC = () => {
               handleTogglePreference={handleTogglePreference}
             />
           )}
+        </div>
+        <div className="max-w-5xl mx-auto flex justify-center">
+          <Button
+            text="Navigate to your articles"
+            size="s"
+            type="secondary"
+            redirectTo="/me/articles"
+          />
         </div>
       </div>
     </Layout>

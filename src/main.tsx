@@ -27,8 +27,12 @@ const router = createBrowserRouter([
     element: <AuthorProfile />,
   },
   {
-    path: "myProfile",
+    path: "me/profile",
     element: <MyProfile />,
+  },
+  {
+    path: "me/articles",
+    element: <MyDashboard />,
   },
   {
     path: "members",
@@ -43,11 +47,7 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
   {
-    path: "dashboard",
-    element: <MyDashboard />,
-  },
-  {
-    path: "editor",
+    path: "articleEditor",
     element: <Editor />,
   },
 ]);
