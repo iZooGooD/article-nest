@@ -31,6 +31,10 @@ const NavigationPrimary: React.FC<NavigationPrimaryProps> = ({
   onSearchButtonClick,
   searchInputErrors,
 }) => {
+  // TODO: Remove this when context/redux store is ready
+  const user = {
+    username: "testUserl02", // Mock user data
+  };
   return (
     <nav className="flex justify-end items-center bg-purple-light h-10 relative">
       <ul className="flex mx-2">
@@ -48,9 +52,15 @@ const NavigationPrimary: React.FC<NavigationPrimaryProps> = ({
             className="hover:text-white text-purple-faded"
             icon={faUser}
           />
-          <span className="mx-2 text-sm cursor-pointer text-purple-faded hover:text-white select-none">
-            Sign in
-          </span>
+          {user.username ? (
+            <span className="mx-2 text-sm cursor-pointer text-purple-faded hover:text-white select-none">
+              {user.username}
+            </span>
+          ) : (
+            <span className="mx-2 text-sm cursor-pointer text-purple-faded hover:text-white select-none">
+              Sign in
+            </span>
+          )}
           <FontAwesomeIcon
             className="hover:text-white text-purple-faded"
             icon={isSignInMenuOpen ? faCaretUp : faCaretDown}

@@ -5,7 +5,7 @@ import {
   faMinusCircle,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Button from "src/components/common/_ux/Button/Button";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
