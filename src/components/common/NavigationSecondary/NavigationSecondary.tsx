@@ -11,6 +11,7 @@ const NavigationSecondary: React.FC = () => {
   const handleMobileNavClick = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
   };
+
   return (
     <nav className="flex bg-purple-dark h-20 items-center justify-between md:justify-around px-6">
       <div className="flex">
@@ -23,13 +24,27 @@ const NavigationSecondary: React.FC = () => {
           />
         </Link>
       </div>
-      <ul className="hidden md:flex">
-        <LinkText to="/" text="Home" />
-        <LinkText to="/articles?tags=Software+Dev" text="Software Dev" />
-        <LinkText to="/articles?tags=Cloud" text="Cloud" />
-        <LinkText to="/articles?tags=AI" text="AI" />
-        <LinkText to="/articles?tags=Security" text="Security" />
+
+      {/* Desktop Navigation Links */}
+      <ul className="hidden md:flex space-x-8">
+        <li className="nav-item">
+          <LinkText to="/" text="Home" />
+        </li>
+        <li className="nav-item">
+          <LinkText to="/articles?tags=Software+Dev" text="Software Dev" />
+        </li>
+        <li className="nav-item">
+          <LinkText to="/articles?tags=Cloud" text="Cloud" />
+        </li>
+        <li className="nav-item">
+          <LinkText to="/articles?tags=AI" text="AI" />
+        </li>
+        <li className="nav-item">
+          <LinkText to="/articles?tags=Security" text="Security" />
+        </li>
       </ul>
+
+      {/* Mobile Navigation */}
       <div className="flex">
         <FontAwesomeIcon
           icon={isMobileNavOpen ? faClose : faBars}

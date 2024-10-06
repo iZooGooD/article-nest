@@ -2,6 +2,7 @@ import { ArticleType } from "src/utils/types/article";
 import ArticleViewSkeleton from "src/components/common/ArticleViewCardSkeleton/ArticleViewCardSkeleton";
 import ArticleViewCard from "src/components/common/ArticleViewCard/ArticleViewCard";
 import type { QueryStatus } from "react-query";
+import LoadingError from "src/components/common/LoadingError/LoadingError";
 
 interface TrendingArticlesProps {
   articles: Array<ArticleType>;
@@ -31,6 +32,7 @@ const TrendingArticles: React.FC<TrendingArticlesProps> = ({
             <ArticleViewCard key={article.id} {...article} />
           ))}
       </section>
+      {status === "error" && <LoadingError />}
     </div>
   );
 };
