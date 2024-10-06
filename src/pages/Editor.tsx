@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   faArrowCircleLeft,
   faCheck,
@@ -21,31 +21,13 @@ export const Editor: React.FC = () => {
   const articleid: string | null = searchParams.get("articleid");
   const mode: string | null = searchParams.get("mode");
 
-  useQuery(
-    "articleEdit",
-    () =>
-      articleid
-        ? API.getArticleDetails(articleid)
-        : Promise.reject("No article id found to edit"),
-    {
-      onSuccess: (article) => {
-        setSections(article.description.sections);
-        setTitle(article.title);
-      },
-    }
-  );
-
-  useEffect(() => {
-    const fetchArticleDetails = async (articleid: string) => {
-      const articleResponse = await API.getArticleDetails(articleid);
-
-      setSections(articleResponse.description.sections);
-      setTitle(articleResponse.title);
-    };
-    if (mode === "edit" && articleid) {
-      fetchArticleDetails(articleid);
-    }
-  }, [articleid, mode]);
+  useQuery("articleEdit", () => API.getArticleDetails(articleid ?? ""), {
+    onSuccess: (article) => {
+      setSections(article.description.sections);
+      setTitle(article.title);
+    },
+    enabled: !!articleid,
+  });
 
   const addSection = () => {
     setSections([

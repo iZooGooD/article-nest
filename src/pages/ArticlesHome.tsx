@@ -10,7 +10,6 @@ import { API } from "src/services/api";
 import { ArticleType } from "src/utils/types/article";
 import { TagType } from "src/utils/types/tags";
 import Pagination from "src/components/common/Pagination/Pagination";
-import "src/components/common/Pagination/Pagination.scss";
 
 const ArticlesHome: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
