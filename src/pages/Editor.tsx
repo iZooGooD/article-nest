@@ -10,43 +10,41 @@ import Button from "src/components/common/_ux/Button/Button";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Layout from "src/components/common/Layout/Layout";
-import { SectionType } from "src/utils/types/article";
 import { API } from "src/services/api";
 import { useQuery } from "react-query";
+import { useReducer } from "react";
+import { sectionsReducer } from "src/reducers/sectionsReducer";
 
 export const Editor: React.FC = () => {
   const [title, setTitle] = useState<string>("");
-  const [sections, setSections] = useState<SectionType[]>([]);
   const [searchParams] = useSearchParams();
   const articleid: string | null = searchParams.get("articleid");
   const mode: string | null = searchParams.get("mode");
 
+  const [sections, dispatch] = useReducer(sectionsReducer, []);
+
   useQuery("articleEdit", () => API.getArticleDetails(articleid ?? ""), {
     onSuccess: (article) => {
-      setSections(article.description.sections);
+      dispatch({
+        type: "initialize_sections",
+        sections: article.description.sections,
+      });
       setTitle(article.title);
     },
     enabled: !!articleid,
   });
 
-  const addSection = () => {
-    setSections([
-      ...sections,
-      { title: "", content: "", image: { alt: "", url: "" } },
-    ]);
-  };
-
-  const removeSection = (index: number) => {
-    setSections(sections.filter((_, i) => i !== index));
-  };
-
   const handleSectionChange = (index: number, field: string, value: string) => {
-    const updatedSections = [...sections];
-    updatedSections[index] = { ...updatedSections[index], [field]: value };
-    setSections(updatedSections);
+    dispatch({
+      type: "update_section",
+      index,
+      field,
+      value,
+    });
   };
 
   const handleSubmit = () => {
+    // TODO: handle submit logic
     console.log({ title, sections });
   };
 
@@ -95,7 +93,7 @@ export const Editor: React.FC = () => {
               size="s"
               type="primary"
               icon={faPlus}
-              onClick={addSection}
+              onClick={() => dispatch({ type: "add_section" })}
             />
           </div>
 
@@ -156,7 +154,7 @@ export const Editor: React.FC = () => {
                   size="s"
                   type="danger"
                   icon={faMinusCircle}
-                  onClick={() => removeSection(index)}
+                  onClick={() => dispatch({ type: "remove_section", index })}
                 />
               </div>
             </div>
