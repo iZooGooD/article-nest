@@ -11,7 +11,7 @@ const CommentItem: React.FC<CommentProps> = ({
 }) => {
   return (
     <div className="comment-card flex items-center gap-4 mt-4 relative w-full">
-      <Link to={`/${author.username}`}>
+      <Link to={`/user/${author.username}`}>
         <img
           src={author?.profileUrl}
           alt={author?.name}
@@ -20,7 +20,7 @@ const CommentItem: React.FC<CommentProps> = ({
       </Link>
       <div className="p-4 w-full rounded-lg shadow-sm border border-grey-faded dark:border-black-faded relative after:content-[''] after:absolute after:left-[-29px] after:top-1/2 after:-translate-y-1/2 after:border-[14px] after:border-transparent after:border-r-grey-faded dark:after:border-r-black-faded">
         <div className="flex items-center">
-          <Link to={`/${author.username}`} className="hover:underline">
+          <Link to={`/user/${author.username}`} className="hover:underline">
             <p className="text-neutral-800 dark:text-gray-200 font-semibold text-sm md:text-lg">
               {author?.name}
             </p>
