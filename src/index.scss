@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 @import "src/components/common/Pagination/Pagination.scss";
 @import "src/components/common/NavigationSecondary/NavigationSecondary.scss";
+@import 'react-lazy-load-image-component/src/effects/blur.css';
 
 @tailwind base;
 @tailwind components;

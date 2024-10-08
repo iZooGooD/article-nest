@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArticleType as ArticleProps } from "src/utils/types/article";
 import { generateArticleSlug } from "src/utils/helpers/generateSlug";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ArticleWideViewCard: React.FC<ArticleProps> = ({
   id,
@@ -17,9 +18,10 @@ const ArticleWideViewCard: React.FC<ArticleProps> = ({
         to={`${generateArticleSlug(title, author, id)}`}
         className="h-[100%] md:h-[180px] md:w-[380px] image-wrapper flex items-center"
       >
-        <img
+        <LazyLoadImage
           src={postImage}
           alt="Tech Article"
+          effect="blur"
           className="h-[100px] w-[220px]  md:h-[180px] md:w-[380px] rounded-sm"
         />
       </Link>
@@ -39,9 +41,10 @@ const ArticleWideViewCard: React.FC<ArticleProps> = ({
           </span>
         </div>
         <div className="flex items-center my-2">
-          <img
+          <LazyLoadImage
             src={author.profileUrl}
             alt="Author"
+            effect="blur"
             className="w-8 h-8 rounded-full mr-2"
           />
           <span className="dark:text-neutral-200 text-neutral-600 text-sm">
