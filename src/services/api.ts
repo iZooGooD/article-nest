@@ -7,6 +7,8 @@ import { ProfileType } from "src/utils/types/profile";
 import { CommentType } from "src/utils/types/comment";
 import { PrivateProfileType } from "src/utils/types/profile";
 import { TagType } from "src/utils/types/tags";
+import { UserType } from "src/utils/types/user";
+import { SignUpForm } from "src/utils/validations/signup";
 
 export class API {
   static namespace: string = "/api";
@@ -102,5 +104,80 @@ export class API {
     }
     const data = await response.json();
     return data.articles;
+  }
+
+  static async searchArticles(
+    page: number,
+    keywords?: string,
+    sortBy?: string,
+    author?: string,
+    tags?: string
+  ): Promise<{
+    data: ArticleType[];
+    metadata: { pageSize: number; pages: number; count: number };
+  }> {
+    const searchParams = new URLSearchParams();
+
+    if (keywords) searchParams.append("keywords", keywords);
+    if (sortBy) searchParams.append("sortBy", sortBy);
+    if (author) searchParams.append("author", author);
+    if (tags) searchParams.append("tags", tags);
+    if (page) searchParams.append("page", page.toString());
+
+    const response = await fetch(
+      `${API.namespace}/articles/search?${searchParams.toString()}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        "Response was not ok while fetching User Dashboard Articles"
+      );
+    }
+    return await response.json();
+  }
+
+  static async login(
+    username: string,
+    password: string
+  ): Promise<{ token: string; user: UserType }> {
+    const response = await fetch(`${API.namespace}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
+
+    const data = await response.json();
+    return {
+      token: data.token,
+      user: data.user,
+    };
+  }
+
+  static async refreshToken(token: string): Promise<string> {
+    const response = await fetch(`${API.namespace}/refresh-token`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to refresh token");
+    }
+
+    const data = await response.json();
+    return data.token;
+  }
+
+  static async registerUser(userData: SignUpForm): Promise<boolean> {
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    return response.status === 201 ? true : false;
   }
 }

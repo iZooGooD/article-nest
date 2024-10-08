@@ -24,7 +24,7 @@ const ArticleAuthorInfo: React.FC<ArticleAuthorInfoProps> = ({
         About the author
       </h4>
       <div className="mt-8 flex flex-col md:flex-row items-center gap-6">
-        <Link to={`/${username}`}>
+        <Link to={`/user/${username}`}>
           <img
             src={profileUrl}
             alt={name}
@@ -32,7 +32,7 @@ const ArticleAuthorInfo: React.FC<ArticleAuthorInfoProps> = ({
           />
         </Link>
         <div>
-          <Link to={`/${username}`}>
+          <Link to={`/user/${username}`}>
             <h2 className="text-2xl font-bold text-neutral-800 dark:text-gray-200">
               {name}
             </h2>

@@ -44,7 +44,7 @@ const ArticleViewCard: React.FC<ArticleProps> = ({
             className="w-8 h-8 rounded-full mr-2"
           />
           <span className="dark:text-neutral-200 text-neutral-600 text-sm">
-            <Link className="hover:underline" to={`/${author.username}`}>
+            <Link className="hover:underline" to={`/user/${author.username}`}>
               {author.name}
             </Link>{" "}
             on {publishedAt}

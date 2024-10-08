@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "../components/common/_ux/Button/Button";
 import Layout from "src/components/common/Layout/Layout";
 import { signInSchema, SignInForm } from "src/utils/validations/signin";
 import { signUpSchema, SignUpForm } from "src/utils/validations/signup";
+import { useAuth } from "src/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import LoaderButton from "src/components/common/_ux/LoaderButton/LoaderButton";
+import { API } from "src/services/api";
 
 const UserSignupLogin: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
   // SignIn form setup
   const {
     register: registerSignIn,
@@ -27,14 +33,23 @@ const UserSignupLogin: React.FC = () => {
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSignInSubmit = (data: SignInForm) => {
-    console.log("SignIn Data:", data);
-    // Handle sign-in logic here
+  const onSignInSubmit = async (data: SignInForm) => {
+    setIsLoading(true);
+    login(data.email, data.password)
+      .then(() => navigate("/me/profile"))
+      .catch((e) => toast.error(e))
+      .finally(() => setIsLoading(false));
   };
 
-  const onSignUpSubmit = (data: SignUpForm) => {
-    console.log("SignUp Data:", data);
-    // Handle sign-up logic here
+  const onSignUpSubmit = async (data: SignUpForm) => {
+    setIsLoading(true);
+    const response = await API.registerUser(data);
+    if (response) {
+      toast.success("Account created successfully!");
+    } else {
+      toast.error("Failed to create account!");
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -143,7 +158,12 @@ const UserSignupLogin: React.FC = () => {
               </div>
 
               <div className="w-full">
-                <Button text="Sign up" type="primary" size="full" />{" "}
+                <LoaderButton
+                  text="Sign up"
+                  type="primary"
+                  size="full"
+                  isLoading={isLoading}
+                />
               </div>
 
               <p className="mt-4 text-center text-gray-700 dark:text-gray-300">
@@ -202,7 +222,12 @@ const UserSignupLogin: React.FC = () => {
               </div>
 
               <div className="w-full">
-                <Button text="Sign In" type="primary" size="full" />
+                <LoaderButton
+                  text={"Sign in"}
+                  type="primary"
+                  size="full"
+                  isLoading={isLoading}
+                />
               </div>
 
               <p className="mt-4 text-center text-gray-700 dark:text-gray-300">

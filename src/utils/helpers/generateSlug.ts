@@ -7,5 +7,5 @@ export const generateArticleSlug = (
 ): string => {
   const username: string = author.username;
   const slug: string = title.toLowerCase().split(" ").join("-");
-  return `/${username}/${slug}-${id}`;
+  return `/${username}/posts/${slug}-${id}`;
 };

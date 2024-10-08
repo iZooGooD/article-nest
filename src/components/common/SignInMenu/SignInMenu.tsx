@@ -6,26 +6,23 @@ import {
   faRightFromBracket,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "src/contexts/AuthContext";
 
 interface SignInMenuProps {
   isSignInMenuOpen: boolean;
 }
 
 const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
-  // TODO: Remove this when context/redux store is ready
-  const user = {
-    username: "testUserl02", // Mock user data
-  };
-
+  const { state, logout } = useAuth();
   return (
     <div
       className={`rounded-md shadow-md z-20 sign-in-menu flex flex-col gap-4 ${
-        user.username ? "" : "p-3 md:p-6"
+        state.isAuthenticated ? "" : "p-3 md:p-6"
       }  bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 absolute top-10 right-0 rounded-b-md transition-opacity duration-300 ${
         isSignInMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
-      {user.username ? (
+      {state.isAuthenticated ? (
         <div>
           <ul className="">
             <li className="border-b dark:border-gray-600">
@@ -66,8 +63,9 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
             </li>
             <li className="border-b dark:border-gray-600">
               <Link
-                to="/me/articles"
                 className="text-sm flex items-center  gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                to={""}
+                onClick={logout}
               >
                 <FontAwesomeIcon
                   icon={faRightFromBracket}

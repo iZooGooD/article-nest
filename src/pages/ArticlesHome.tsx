@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Layout from "src/components/common/Layout/Layout";
 import Button from "src/components/common/_ux/Button/Button";
@@ -7,42 +7,37 @@ import SearchBar from "src/components/ArticlesHome/SearchBar";
 import Filters from "src/components/ArticlesHome/Filters";
 import ArticlesList from "src/components/ArticlesHome/ArticleList";
 import { API } from "src/services/api";
-import { ArticleType } from "src/utils/types/article";
-import { TagType } from "src/utils/types/tags";
 import Pagination from "src/components/common/Pagination/Pagination";
+import { useQuery } from "react-query";
 
 const ArticlesHome: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [articles, setArticles] = useState<ArticleType[]>([]);
-  const [isArticlesLoading, setIsArticlesLoading] = useState<boolean>(true);
   const [keywords, setKeywords] = useState(searchParams.get("keywords") || "");
   const [sortBy, setSortBy] = useState("date");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [author, setAuthor] = useState("");
-  const [tags, setTags] = useState<TagType[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
 
-  // TODO: Migrate to use react-query
-  // TODO: Remove unnecessary fetch for tags on each page change
-  useEffect(() => {
-    const fetchTrendingArticles = async () => {
-      setIsArticlesLoading(true);
-      const articlesResponse = await API.getTrendingArticles();
-      setArticles(articlesResponse);
-      setTotalPages(5); // Assume this is returned by the API
-      setIsArticlesLoading(false);
-    };
+  const { data: articles, isLoading } = useQuery(
+    ["searchArticles", currentPage],
+    () =>
+      API.searchArticles(
+        currentPage,
+        keywords,
+        sortBy,
+        author,
+        selectedTags.toString()
+      ),
+    {
+      onSuccess: (data) => {
+        setTotalPages(data.metadata.pages);
+      },
+    }
+  );
 
-    const fetchAllTags = async () => {
-      const tagsResponse = await API.getAllTags();
-      setTags(tagsResponse);
-    };
-
-    fetchTrendingArticles();
-    fetchAllTags();
-  }, [currentPage]);
+  const { data: tags } = useQuery("tags", API.getAllTags);
 
   const handleSearch = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +47,7 @@ const ArticlesHome: React.FC = () => {
     if (sortBy) params.sortBy = sortBy;
 
     setSearchParams(params);
-    setCurrentPage(1); // Reset to first page on new search
+    setCurrentPage(1);
   };
 
   return (
@@ -84,7 +79,7 @@ const ArticlesHome: React.FC = () => {
               <Filters
                 sortBy={sortBy}
                 setSortBy={setSortBy}
-                tags={tags}
+                tags={tags ?? []}
                 selectedTags={selectedTags}
                 setSelectedTags={setSelectedTags}
                 author={author}
@@ -94,7 +89,7 @@ const ArticlesHome: React.FC = () => {
             )}
           </div>
 
-          <ArticlesList articles={articles} isLoading={isArticlesLoading} />
+          <ArticlesList articles={articles?.data ?? []} isLoading={isLoading} />
 
           {totalPages > 1 && (
             <div className="flex justify-center mt-8">

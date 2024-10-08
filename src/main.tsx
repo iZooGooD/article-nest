@@ -14,6 +14,9 @@ import MyDashboard from "./pages/MyDashboard.tsx";
 import { Editor } from "./pages/Editor.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { AuthProvider } from "./contexts/AuthContext.js";
+import PrivateRoutes from "./routes/PrivateRoutes.tsx";
+import { AnimatePresence } from "framer-motion";
 
 const router = createBrowserRouter([
   {
@@ -21,36 +24,41 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: ":username/:slug",
+    path: ":username/posts/:slug",
     element: <ArticleReading />,
   },
   {
-    path: ":username",
+    path: "user/:username",
     element: <AuthorProfile />,
-  },
-  {
-    path: "me/profile",
-    element: <MyProfile />,
-  },
-  {
-    path: "me/articles",
-    element: <MyDashboard />,
-  },
-  {
-    path: "members",
-    element: <UserSignupLogin />,
   },
   {
     path: "articles",
     element: <ArticlesHome />,
   },
   {
-    path: "*",
-    element: <NotFound />,
+    element: <PrivateRoutes />,
+    children: [
+      {
+        path: "me/profile",
+        element: <MyProfile />,
+      },
+      {
+        path: "me/articles",
+        element: <MyDashboard />,
+      },
+      {
+        path: "articleEditor",
+        element: <Editor />,
+      },
+    ],
   },
   {
-    path: "articleEditor",
-    element: <Editor />,
+    path: "members",
+    element: <UserSignupLogin />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
@@ -61,9 +69,13 @@ makeServer();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <AnimatePresence initial={false} mode="wait">
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </AuthProvider>
+    </AnimatePresence>
   </StrictMode>
 );

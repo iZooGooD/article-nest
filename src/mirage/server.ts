@@ -1,4 +1,4 @@
-import { createServer } from "miragejs";
+import { createServer, Response } from "miragejs";
 import {
   TRENDING_ARTICLES_RESPONSE,
   LATEST_ARTICLES_RESPONSE,
@@ -9,6 +9,7 @@ import {
   MY_PROFILE_RESPONSE,
   TAGS_RESPONSE,
   USER_ARTICLES_STATS,
+  SEARCH_DATA,
 } from "./constants";
 
 export default function () {
@@ -83,6 +84,63 @@ export default function () {
           setTimeout(() => {
             resolve(USER_ARTICLES_STATS);
           }, 0);
+        });
+      });
+
+      this.get("/api/articles/search", (schema, request) => {
+        // Extract search params from queryParams
+        const { page = 1 } = request.queryParams;
+
+        const currentPage = Number(page);
+
+        const articlesPerPage = 6;
+
+        const startIndex = (currentPage - 1) * articlesPerPage;
+        const endIndex = startIndex + articlesPerPage;
+
+        const paginatedData = SEARCH_DATA.slice(startIndex, endIndex);
+
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({
+              data: paginatedData,
+              metadata: {
+                pageSize: 6,
+                pages: 2,
+                count: 6,
+              },
+            });
+          }, 1000);
+        });
+      });
+
+      this.post("/api/login", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve({
+              token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`,
+              user: {
+                email: "testuser@articlenest.com",
+                username: "jack_1",
+                firstName: "Jack",
+                lastName: "Miller",
+              },
+            });
+          }, 1500);
+        });
+      });
+
+      this.post("/api/register", () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(
+              new Response(
+                201,
+                { "Content-Type": "application/json" },
+                { message: "User created" }
+              )
+            );
+          }, 1500);
         });
       });
     },
