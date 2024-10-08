@@ -87,7 +87,7 @@ export default function () {
         });
       });
 
-      this.get("/api/articles/search", (schema, request) => {
+      this.get("/api/articles/search", (_schema, request) => {
         // Extract search params from queryParams
         const { page = 1 } = request.queryParams;
 
