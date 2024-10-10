@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
                 <img
                   src={logo}
                   alt="site logo"
-                  className="h-[100px] outline-none"
+                  className="h-[100px] outline-none select-none"
                 />
               </Link>
               <p className="text-sm text-grey-light ml-4">

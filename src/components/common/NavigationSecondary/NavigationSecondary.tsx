@@ -21,14 +21,14 @@ const NavigationSecondary: React.FC = () => {
           <img
             src={logo}
             alt="site logo"
-            className="h-[175px] outline-none"
+            className="h-[175px] outline-none select-none"
             height={175}
           />
         </Link>
       </div>
 
       {/* Desktop Navigation Links */}
-      <ul className="hidden md:flex space-x-8">
+      <ul className="hidden md:flex space-x-8 select-none">
         <li className="nav-item">
           <LinkText to="/" text="Home" />
         </li>
