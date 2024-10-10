@@ -26,6 +26,7 @@ const Header: React.FC<HeaderProps> = ({
   searchInputErrors,
 }) => {
   const dropdownRef = useOutsideClickHandler(handleSignInMenuToggle);
+
   return (
     <header>
       <div ref={isSignInMenuOpen ? dropdownRef : undefined}>

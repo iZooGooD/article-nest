@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MobileNavigation from "src/components/common/MobileNavigation/MobileNavigation";
 import LinkText from "src/components/common/_ux/LinkText/LinkText";
 import { Link } from "react-router-dom";
+import useOutsideClickHandler from "src/hooks/useOutsideClickHandler";
 
 const NavigationSecondary: React.FC = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
   const handleMobileNavClick = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
   };
+  const mobileMenuRef = useOutsideClickHandler(handleMobileNavClick);
 
   return (
     <nav className="flex bg-purple-dark h-20 items-center justify-between md:justify-around px-6">
@@ -51,7 +53,9 @@ const NavigationSecondary: React.FC = () => {
           className="text-3xl cursor-pointer md:hidden flex"
           onClick={handleMobileNavClick}
         />
-        <MobileNavigation isOpen={isMobileNavOpen} />
+        <div ref={isMobileNavOpen ? mobileMenuRef : undefined}>
+          <MobileNavigation isOpen={isMobileNavOpen} />
+        </div>
       </div>
     </nav>
   );

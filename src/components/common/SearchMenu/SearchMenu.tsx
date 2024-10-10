@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { KEY_CODES } from "src/utils/constants";
+import useOutsideClickHandler from "src/hooks/useOutsideClickHandler";
 
 interface SearchMenuProps {
   isSearchMenuVisible: boolean;
@@ -26,12 +27,13 @@ const SearchMenu: React.FC<SearchMenuProps> = ({
       onSearchButtonClick();
     }
   };
-
+  const searchMenuRef = useOutsideClickHandler(handleSearchMenuToggle);
   return (
     <div
       className={`flex flex-col mx-auto justify-center absolute top-0 z-20 h-[180px] md:h-[120px] w-full bg-white dark:bg-black-faded shadow-lg ${
         isSearchMenuVisible ? "opacity-100 visible" : "opacity-0 invisible"
       } transition-opacity duration-300 ease-in-out`}
+      ref={isSearchMenuVisible ? searchMenuRef : undefined}
     >
       <div className="flex items-center justify-center w-full mw-[100%]">
         <input
