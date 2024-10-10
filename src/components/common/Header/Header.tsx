@@ -1,5 +1,6 @@
 import NavigationPrimary from "src/components/common/NavigationPrimary/NavigationPrimary";
 import NavigationSecondary from "src/components/common/NavigationSecondary/NavigationSecondary";
+import useOutsideClickHandler from "src/hooks/useOutsideClickHandler";
 
 interface HeaderProps {
   isSignInMenuOpen: boolean;
@@ -24,18 +25,21 @@ const Header: React.FC<HeaderProps> = ({
   onSearchButtonClick,
   searchInputErrors,
 }) => {
+  const dropdownRef = useOutsideClickHandler(handleSignInMenuToggle);
   return (
     <header>
-      <NavigationPrimary
-        isSignInMenuOpen={isSignInMenuOpen}
-        handleSignInMenuToggle={handleSignInMenuToggle}
-        isSearchMenuVisible={isSearchMenuVisible}
-        handleSearchMenuToggle={handleSearchMenuToggle}
-        handleSearchMenuInputChange={handleSearchMenuInputChange}
-        searchMenuInputText={searchMenuInputText}
-        onSearchButtonClick={onSearchButtonClick}
-        searchInputErrors={searchInputErrors}
-      />
+      <div ref={isSignInMenuOpen ? dropdownRef : undefined}>
+        <NavigationPrimary
+          isSignInMenuOpen={isSignInMenuOpen}
+          handleSignInMenuToggle={handleSignInMenuToggle}
+          isSearchMenuVisible={isSearchMenuVisible}
+          handleSearchMenuToggle={handleSearchMenuToggle}
+          handleSearchMenuInputChange={handleSearchMenuInputChange}
+          searchMenuInputText={searchMenuInputText}
+          onSearchButtonClick={onSearchButtonClick}
+          searchInputErrors={searchInputErrors}
+        />
+      </div>
       <NavigationSecondary />
     </header>
   );
