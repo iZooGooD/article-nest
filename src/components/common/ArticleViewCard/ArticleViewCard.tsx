@@ -16,7 +16,7 @@ const ArticleViewCard: React.FC<ArticleProps> = ({
     <div className="flex flex-col rounded-sm">
       <Link
         className="image-wrapper relative"
-        to={`${generateArticleSlug(title, author, id)}`}
+        to={`${generateArticleSlug(title, author.username, id)}`}
       >
         <LazyLoadImage
           src={postImage}
@@ -27,7 +27,7 @@ const ArticleViewCard: React.FC<ArticleProps> = ({
       </Link>
       <div className="flex flex-col justify-between dark:bg-black-faded bg-white shadow-sm py-2 px-4 h-[100%]">
         <div>
-          <Link to={`${generateArticleSlug(title, author, id)}`}>
+          <Link to={`${generateArticleSlug(title, author.username, id)}`}>
             <h4 className="md:text-xl text-brand font-medium line-clamp-1">
               {title}
             </h4>

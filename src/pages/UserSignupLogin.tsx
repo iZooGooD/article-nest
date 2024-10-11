@@ -29,6 +29,7 @@ const UserSignupLogin: React.FC = () => {
     register: registerSignUp,
     handleSubmit: handleSignUpSubmit,
     formState: { errors: signUpErrors },
+    reset: resetSignUp,
   } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
   });
@@ -46,6 +47,8 @@ const UserSignupLogin: React.FC = () => {
     const response = await API.registerUser(data);
     if (response) {
       toast.success("Account created successfully!");
+      resetSignUp();
+      setIsSignUp(false);
     } else {
       toast.error("Failed to create account!");
     }

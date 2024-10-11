@@ -15,7 +15,7 @@ const ArticleWideViewCard: React.FC<ArticleProps> = ({
   return (
     <div className="md:flex-row flex flex-row-reverse rounded-md  dark:bg-black-faded bg-white shadow-sm hover:shadow-lg transition-all delay-400">
       <Link
-        to={`${generateArticleSlug(title, author, id)}`}
+        to={`${generateArticleSlug(title, author.username, id)}`}
         className="h-[100%] md:h-[180px] md:w-[380px] image-wrapper flex items-center"
       >
         <LazyLoadImage
@@ -28,7 +28,7 @@ const ArticleWideViewCard: React.FC<ArticleProps> = ({
 
       <div className="flex flex-col justify-between py-2 px-4 h-[100%] w-full">
         <div>
-          <Link to={`${generateArticleSlug(title, author, id)}`}>
+          <Link to={`${generateArticleSlug(title, author.username, id)}`}>
             <h4 className="md:text-xl text-brand font-medium line-clamp-2">
               {title}
             </h4>
