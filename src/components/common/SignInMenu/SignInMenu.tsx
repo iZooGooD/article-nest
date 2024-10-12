@@ -28,7 +28,7 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
             <li className="border-b dark:border-gray-600">
               <Link
                 to="/me/articles"
-                className="text-sm flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                className="text-sm flex items-center gap-2 px-6 py-3  hover:bg-gray-200 dark:hover:bg-gray-600 transition"
               >
                 <FontAwesomeIcon
                   icon={faFileAlt}
@@ -40,7 +40,7 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
             <li className="border-b dark:border-gray-600">
               <Link
                 to="/me/profile"
-                className="text-sm flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                className="text-sm flex items-center gap-2 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
               >
                 <FontAwesomeIcon
                   icon={faUser}
@@ -52,7 +52,7 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
             <li className="border-b dark:border-gray-600">
               <Link
                 to="/articleEditor?mode=create"
-                className="text-sm flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                className="text-sm flex items-center gap-2 px-6 py-3  hover:bg-gray-200 dark:hover:bg-gray-600 transition"
               >
                 <FontAwesomeIcon
                   icon={faPenToSquare}
@@ -61,9 +61,9 @@ const SignInMenu: React.FC<SignInMenuProps> = ({ isSignInMenuOpen }) => {
                 <span>Write article</span>
               </Link>
             </li>
-            <li className="border-b dark:border-gray-600">
+            <li>
               <Link
-                className="text-sm flex items-center  gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                className="text-sm flex items-center  gap-2 px-6 py-3  hover:bg-gray-200 dark:hover:bg-gray-600 transition"
                 to={""}
                 onClick={logout}
               >
