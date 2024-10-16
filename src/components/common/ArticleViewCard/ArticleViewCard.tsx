@@ -15,7 +15,7 @@ const ArticleViewCard: React.FC<ArticleProps> = ({
   return (
     <div className="flex flex-col rounded-sm">
       <Link
-        className="image-wrapper relative"
+        className="image-wrapper relative grid"
         to={`${generateArticleSlug(title, author.username, id)}`}
       >
         <LazyLoadImage
